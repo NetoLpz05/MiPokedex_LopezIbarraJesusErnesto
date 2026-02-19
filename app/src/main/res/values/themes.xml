@@ -1,0 +1,7 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MiPokedex_LopezIbarraJesusErnesto" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_gradient_login</item>
+    </style>
+    <style name="Theme.MiPokedex_LopezIbarraJesusErnesto" parent="Base.Theme.MiPokedex_LopezIbarraJesusErnesto" />
+</resources>
