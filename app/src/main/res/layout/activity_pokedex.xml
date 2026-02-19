@@ -37,7 +37,7 @@
         style="@style/Pokedex.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pikachu"
+        android:text="@string/pokemon_name"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Altura"
+                android:text="@string/altura"
                 app:layout_constraintEnd_toStartOf="@+id/valAltura"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/typeChip" />
@@ -101,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:text="0,4m"
+                android:text="@string/altura_val"
                 app:layout_constraintBaseline_toBaselineOf="@id/labelAltura"
                 app:layout_constraintStart_toEndOf="@id/labelAltura" />
 
@@ -122,7 +122,7 @@
                 style="@style/Pokedex.Value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="6,0kg"
+                android:text="@string/habilidad_val"
                 app:layout_constraintBaseline_toBaselineOf="@id/labelPeso"
                 app:layout_constraintEnd_toStartOf="@+id/valHabilidad"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -135,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="40dp"
-                android:text="Habilidad"
+                android:text="@string/habilidad"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/typeChip" />
 
@@ -145,7 +145,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@string/habilidad"
+                android:text="@string/habilidad_poke"
                 app:layout_constraintStart_toStartOf="@+id/labelHabilidad"
                 app:layout_constraintTop_toBottomOf="@id/labelHabilidad" />
 
@@ -187,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_marginStart="4dp"
-                android:text="Arbok N.º 0024"
+                android:text="@string/ant_pokemon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/btnBack" />
 
@@ -206,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_marginEnd="4dp"
-                android:text="Raichu N.º 0026"
+                android:text="@string/sig_pokemon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btnNext" />
 

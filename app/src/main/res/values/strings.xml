@@ -11,12 +11,13 @@
     <string name="about">About</string>
     <string name="peso">Peso</string>
     <string name="altura">Altura</string>
-    <string name="habilidad">Elec. Estática</string>
+    <string name="altura_val">0.4m</string>
+    <string name="habilidad">Habilidad</string>
+    <string name="habilidad_val">6.0Kg</string>
+    <string name="habilidad_poke">Elec. Estática</string>
     <string name="pokemon_descripcion">
     Cuando se enfada, descarga energía almacenada en las bolsas de sus mejillas.</string>
     <string name="type_electric">Electric</string>
-    <string name="ant_Pokemon">Arbok</string>
-    <string name="ant_pokemon_number">N.°0024</string>
-    <string name="sig_Pokemon">Raichu</string>
-    <string name="sig_pokemon_number">N.°0026</string>
+    <string name="ant_pokemon">Arbok N.°0024</string>
+    <string name="sig_pokemon">Raichu N.°0026</string>
 </resources>

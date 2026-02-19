@@ -40,7 +40,6 @@
     <style name="Pokedex.Value"
         parent="TextAppearance.Material3.BodyLarge">
         <item name="android:textSize">26sp</item>
-        <item name="android:textColor">@color/black</item>
     </style>
 
     <!--Descripción-->
