@@ -23,7 +23,7 @@
         android:id="@+id/btnFavorite"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:padding="0dp"
+        android:padding="1dp"
         android:src="@drawable/empty_star"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/pokemonName"
