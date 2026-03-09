@@ -2,16 +2,17 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    kotlin("plugin.serialization") version "2.0.21"
 }
 
 android {
-    namespace = "lopez.ibarra.myapplication"
+    namespace = "lopez.ibarra.composePokedex"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "lopez.ibarra.myapplication"
+        applicationId = "lopez.ibarra.composePokedex"
         minSdk = 26
         targetSdk = 36
         versionCode = 1
@@ -50,6 +51,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.navigation.compose)
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -13,10 +13,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
-fun OtherPkmn(posicion: String, imagen: Int, pkmnnombre: String, pkmnnumber: Int, modifier: Modifier = Modifier) {
+fun OtherPkmn(posicion: String, imagen: Int, pkmnnombre: String, pkmnnumber: Int, onArrowClick: () -> Unit, modifier: Modifier = Modifier) {
 
     val esizquierda = posicion.lowercase() == "izquierda"
 
@@ -27,7 +30,7 @@ fun OtherPkmn(posicion: String, imagen: Int, pkmnnombre: String, pkmnnumber: Int
     ) {
 
         if (esizquierda) {
-            ArrowButton(direction = "izquierda")
+            ArrowButton(direction = "izquierda", onClick = onArrowClick)
         }
 
         Row(
@@ -53,16 +56,16 @@ fun OtherPkmn(posicion: String, imagen: Int, pkmnnombre: String, pkmnnumber: Int
         }
 
         if (!esizquierda) {
-            ArrowButton(direction = "derecha")
+            ArrowButton(direction = "derecha", onClick = onArrowClick)
         }
     }
 }
 
 @Composable
-private fun ArrowButton(direction: String) {
+private fun ArrowButton(direction: String, onClick: () -> Unit) {
 
     IconButton(
-        onClick = { },
+        onClick = onClick,
         modifier = Modifier.size(50.dp).clip(CircleShape).background(Color(0xFFE0E0E0))
     ) {
         Image(
@@ -78,8 +81,20 @@ private fun ArrowButton(direction: String) {
 
 @Composable
 private fun PokemonText(name: String, number: Int) {
-    Column {
-        Text(text = name)
-        Text(text = "N.º ${String.format("%04d", number)}")
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.width(90.dp)
+    ) {
+        Text(
+            text = name,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            textAlign = TextAlign.Center
+        )
+
+        Text(
+            text = "N.º ${String.format("%04d", number)}",
+            fontSize = 12.sp
+        )
     }
 }

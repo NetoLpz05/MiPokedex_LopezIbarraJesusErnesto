@@ -1,17 +1,35 @@
 package lopez.ibarra.myapplication.ui.theme
 
 import androidx.compose.ui.graphics.Color
-
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)
-
 val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
-
 val White = Color(0xFFFAFAFA)
 val Red = Color(0xFF8F130B)
 
+val OffWhite = Color(0xFFFAFAFA)
+
+val DarkGray = Color(0xFF1F1F1F)
+
 //Pkmn Color Types :)
 val leaf_green = Color(0xFF73C336)
+val electric_yellow = Color(0xFFEB9F05)
+val poison_purple = Color(0xFFA85EA8)
+val fire_red = Color(0xFFC82801)
+val bug_green = Color(0xFF89960F)
+val water_blue = Color(0xFF3895F0)
+val dark_brown = Color(0xFF4A3B2C)
+val ice_blue = Color(0xFF76D5F3)
+val dragon_purple = Color(0xFF6E58D5)
+val fairy_pink = Color(0xFFEAA2E9)
+val fighting_brown = Color(0xFF7E341A)
+val ground_brown = Color(0xFFC9AC57)
+val steel_gray = Color(0xFFA1A1B1)
+val flying_blue = Color(0xFF5F79D3)
+val normal_gray = Color(0xFFC5BBB4)
+val ghost_purple = Color(0xFF5D5DB0)
+val rock_brown = Color(0xFF9D853C)
+val psychic_pink = Color(0xFFDD3064)

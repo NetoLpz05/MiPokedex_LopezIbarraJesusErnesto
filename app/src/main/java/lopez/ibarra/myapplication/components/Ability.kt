@@ -9,12 +9,12 @@ import lopez.ibarra.myapplication.ui.theme.Red
 @Composable
 fun Ability(type: String, label: String, value: String){
     if(type == "row"){
-        Row(){
+        Row{
             Label(label)
             Text(value)
         }
     }else{
-        Column() {
+        Column{
             Label(label)
             Text(value)
         }

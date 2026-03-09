@@ -9,5 +9,6 @@ data class Pokemon(
     val weight: Float,
     val fav: Boolean,
     val ability: String,
-    val image: Int
+    val image: Int,
+    val evolutions: List<Int> = emptyList()
 )
