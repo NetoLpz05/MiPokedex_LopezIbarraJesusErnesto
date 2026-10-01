@@ -1,6 +1,6 @@
 package lopez.ibarra.myapplication.data
 
-import lopez.ibarra.composePokedex.R
+import lopez.ibarra.myapplication.R
 import lopez.ibarra.myapplication.domain.Pokemon
 
 val pkmnList = listOf(
@@ -176,8 +176,32 @@ val pkmnList = listOf(
     ),
 
     //Froakie
+    Pokemon(
+        "Froakie",
+        656,
+        "Agua",
+        "Protege el cuerpo con una masa de burbujas muy finas. Pese a su aspecto, no pierde de vista lo que ocurre a su alrededor.",
+        0.3f,
+        7.0f,
+        false,
+        "Torrente",
+        R.drawable.froakie,
+        evolutions = listOf(656, 657, 658)
+    ),
 
     //Frogadier (Evo de Froakie)
+    Pokemon(
+        "Frogadier",
+        657,
+        "Agua",
+        "Su agilidad no tiene parangón. Es capaz de escalar una torre de más de 600 metros de altura en apenas un minuto.",
+        0.6f,
+        10.9f,
+        false,
+        "Torrente",
+        R.drawable.frogadier,
+        evolutions = listOf(656, 657, 658)
+    ),
 
     //Greninja (Evo de Frogadier)
     Pokemon(
@@ -194,8 +218,32 @@ val pkmnList = listOf(
     ),
 
     //Fennekin
+    Pokemon(
+        "Fennekin",
+        653,
+        "Fuego",
+        "Mordisquea una ramita para saciarse y la usa para intimidar a sus enemigos expulsando aire caliente por las orejas.",
+        0.4f,
+        9.4f,
+        false,
+        "Mar Llamas",
+        R.drawable.fennekin,
+        evolutions = listOf(653, 654, 655)
+    ),
 
     //Braixen (Evo de Fennekin)
+    Pokemon(
+        "Braixen",
+        654,
+        "Fuego",
+        "Se saca una rama de la cola y la prende para combatir. Con las llamas de la rama, envía señales a sus compañeros.",
+        1.0f,
+        14.5f,
+        false,
+        "Mar Llamas",
+        R.drawable.braixen,
+        evolutions = listOf(653, 654, 655)
+    ),
 
     //Delphox (Evo de Braixen)
     Pokemon(
@@ -232,8 +280,8 @@ val pkmnList = listOf(
         "Fuego",
         "Un Pokémon muy competitivo que fortalece sus piernas corriendo y saltando. " +
                 "Puede convertir una pequeña piedra en un balón de fuego.",
-        33.0f,
         1.4f,
+        33.0f,
         false,
         "Mar Llamas",
         R.drawable.cinderace,
@@ -244,7 +292,7 @@ val pkmnList = listOf(
     Pokemon(
         "Reshiram",
         643,
-        "Dragon",
+        "Dragón/Fuego",
         "Pokémon omnipresente en leyendas. Hace brotar llamas de su cola y consume todo lo que se le pone por delante.",
         3.2f,
         330.0f,

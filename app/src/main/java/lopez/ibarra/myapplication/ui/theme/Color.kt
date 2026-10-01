@@ -12,6 +12,7 @@ val Pink40 = Color(0xFF7D5260)
 
 val White = Color(0xFFFAFAFA)
 val Red = Color(0xFF8F130B)
+val Green = Color(0xFF81CA85)
 
 //Pkmn Color Types :)
 val leaf_green = Color(0xFF73C336)

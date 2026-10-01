@@ -38,10 +38,12 @@ import lopez.ibarra.myapplication.domain.Pokemon
 
 class MainActivity : ComponentActivity() {
 
-    val pokemon = Pokemon("Ogerpon", 1017, "Planta",
+    val pokemon = Pokemon(
+        "Ogerpon", 1017, "Planta",
         "Es bromista y extremadamente curioso. A la hora de combatir, se sirve del tipo de " +
-                "energía que contenga la máscara que lleve puesta.", 39.8f, 1.2f,
-        true, "Competitivo", R.drawable.ogerpon2)
+                "energía que contenga la máscara que lleve puesta.",
+        39.8f, 1.2f,
+        true, "Competitivo", R.drawable.ogerpon)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -157,9 +159,12 @@ fun Greeting(pokemon: Pokemon, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     ComposePokedexTheme {
-        Greeting(Pokemon("Ogerpon", 1017, "Planta", "Es bromista y " +
-                "extremadamente curioso. A la hora de combatir, se sirve del tipo de " +
-                "energía que contenga la máscara que lleve puesta.",
-            39.8f, 1.2f, true, "Competitivo", R.drawable.ogerpon2))
+        Greeting(Pokemon(
+            "Ogerpon", 1017, "Planta",
+            "Es bromista y " +
+                    "extremadamente curioso. A la hora de combatir, se sirve del tipo de " +
+                    "energía que contenga la máscara que lleve puesta.",
+            39.8f, 1.2f, true, "Competitivo", R.drawable.ogerpon2,
+        ))
     }
 }
