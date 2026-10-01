@@ -1,4 +1,4 @@
-package lopez.ibarra.myapplication.utilities
+package lopez.ibarra.myapplication.domain
 
 data class Pokemon(
     val name: String,

@@ -23,8 +23,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,7 +34,7 @@ import lopez.ibarra.myapplication.components.OtherPkmn
 import lopez.ibarra.myapplication.ui.theme.ComposePokedexTheme
 import lopez.ibarra.myapplication.ui.theme.White
 import lopez.ibarra.myapplication.ui.theme.leaf_green
-import lopez.ibarra.myapplication.utilities.Pokemon
+import lopez.ibarra.myapplication.domain.Pokemon
 
 class MainActivity : ComponentActivity() {
 
