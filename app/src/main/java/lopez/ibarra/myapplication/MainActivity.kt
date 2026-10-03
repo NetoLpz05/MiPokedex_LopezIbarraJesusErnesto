@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
         "Es bromista y extremadamente curioso. A la hora de combatir, se sirve del tipo de " +
                 "energía que contenga la máscara que lleve puesta.",
         39.8f, 1.2f,
-        true, "Competitivo", R.drawable.ogerpon)
+        true, "Competitivo", R.drawable.ogerpon, listOf(1017))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -164,7 +164,8 @@ fun GreetingPreview() {
             "Es bromista y " +
                     "extremadamente curioso. A la hora de combatir, se sirve del tipo de " +
                     "energía que contenga la máscara que lleve puesta.",
-            39.8f, 1.2f, true, "Competitivo", R.drawable.ogerpon2,
+            39.8f, 1.2f, true, "Competitivo", R.drawable.ogerpon,
+            listOf(1017)
         ))
     }
 }
