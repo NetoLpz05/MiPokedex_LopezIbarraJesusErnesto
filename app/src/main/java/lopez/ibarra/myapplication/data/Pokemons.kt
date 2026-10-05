@@ -55,7 +55,7 @@ val pkmnList = listOf(
         "Su espíritu luchador aumenta cuando el público se entusiasma. Expulsa llamaradas por su ombligo.",
         1.8f,
         83.0f,
-        false,
+        true,
         "Mar llamas",
         R.drawable.incineroar,
         evolutions = listOf(725, 726, 727)
@@ -69,7 +69,7 @@ val pkmnList = listOf(
         "Es sociable y valiente. A medida que crece, se vuelve más independiente.",
         0.5f,
         9.2f,
-        false,
+        true,
         "Vista Lince",
         R.drawable.rockruff,
         evolutions = listOf(744, 745)
@@ -169,7 +169,7 @@ val pkmnList = listOf(
         "Puede detectar y manipular el aura. Es leal y extremadamente fuerte.",
         1.2f,
         54.0f,
-        false,
+        true,
         "Foco Interno",
         R.drawable.lucario,
         evolutions = listOf(447,448)
@@ -239,7 +239,7 @@ val pkmnList = listOf(
         "Se saca una rama de la cola y la prende para combatir. Con las llamas de la rama, envía señales a sus compañeros.",
         1.0f,
         14.5f,
-        false,
+        true,
         "Mar Llamas",
         R.drawable.braixen,
         evolutions = listOf(653, 654, 655)
@@ -282,7 +282,7 @@ val pkmnList = listOf(
                 "Puede convertir una pequeña piedra en un balón de fuego.",
         1.4f,
         33.0f,
-        false,
+        true,
         "Mar Llamas",
         R.drawable.cinderace,
         evolutions = listOf(813,814,815)

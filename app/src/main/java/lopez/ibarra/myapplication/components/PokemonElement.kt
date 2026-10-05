@@ -74,12 +74,13 @@ fun PokemonRow(pokemon: Pokemon) {
 }
 
 @Composable
-fun FavoritePokemon(pokemon: Pokemon) {
+fun FavoritePokemon(pokemon: Pokemon, onNavigateToDetail: (id:Int) -> Unit) {
     val colors = getColorByType(pokemon.type)
     Column(
         modifier = Modifier.padding(vertical = 15.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        //Añadir el onClick
     ) {
         Box(contentAlignment = Alignment.TopEnd) {
             Box(
@@ -153,15 +154,21 @@ fun PokemonCell(pokemon: Pokemon) {
 fun PokemonElementPreview() {
     ComposePokedexTheme {
         Column {
+            PokemonRow(
+                pokemon = Pokemon(
+                    "Ogerpon", 1, "Grass", "Ogerpon description",
+                    0.7f, 6.9f, true, "Overgrow", R.drawable.ogerpon, listOf(1, 2, 3)
+                )
+            )
             FavoritePokemon(
                 pokemon = Pokemon(
-                    "Bulbasaur", 1, "Grass", "Bulbasaur description",
+                    "Ogerpon", 1, "Grass", "Ogerpon description",
                     0.7f, 6.9f, true, "Overgrow", R.drawable.ogerpon, listOf(1, 2, 3)
                 )
             )
             PokemonCell(
                 pokemon = Pokemon(
-                    "Bulbasaur", 1, "Grass", "Bulbasaur description",
+                    "Ogerpon", 1, "Grass", "Ogerpon description",
                     0.7f, 6.9f, true, "Overgrow", R.drawable.ogerpon, listOf(1, 2, 3)
                 )
             )

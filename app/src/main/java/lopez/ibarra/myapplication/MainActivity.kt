@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import lopez.ibarra.myapplication.screens.MenuPokedexScreen
 import lopez.ibarra.myapplication.ui.theme.ComposePokedexTheme
 
@@ -20,6 +22,18 @@ class MainActivity : ComponentActivity() {
                     MenuPokedexScreen(innerPadding = innerPadding)
                 }
             }
+        }
+    }
+}
+
+@Preview(showBackground = true,)
+@Composable
+fun MainActivityPreview() {
+    ComposePokedexTheme {
+        Scaffold(Modifier.fillMaxSize()) { innerPadding ->
+            MenuPokedexScreen(
+                innerPadding = innerPadding
+            )
         }
     }
 }
