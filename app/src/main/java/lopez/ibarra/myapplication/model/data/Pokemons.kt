@@ -1,7 +1,7 @@
-package lopez.ibarra.myapplication.data
+package lopez.ibarra.myapplication.model.data
 
 import lopez.ibarra.myapplication.R
-import lopez.ibarra.myapplication.domain.Pokemon
+import lopez.ibarra.myapplication.model.domain.Pokemon
 
 val pkmnList = listOf(
     //Ogerpon (Legendario, no tiene evo)

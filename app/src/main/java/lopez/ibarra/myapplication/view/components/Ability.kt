@@ -1,4 +1,4 @@
-package lopez.ibarra.myapplication.components
+package lopez.ibarra.myapplication.view.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

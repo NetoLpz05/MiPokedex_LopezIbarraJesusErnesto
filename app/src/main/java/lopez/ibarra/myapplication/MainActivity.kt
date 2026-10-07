@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import lopez.ibarra.myapplication.navigation.MyApp
-import lopez.ibarra.myapplication.screens.MenuPokedexScreen
 import lopez.ibarra.myapplication.ui.theme.ComposePokedexTheme
 
 class MainActivity : ComponentActivity() {

@@ -1,4 +1,4 @@
-package lopez.ibarra.myapplication.screens
+package lopez.ibarra.myapplication.view.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.*
@@ -8,9 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import lopez.ibarra.myapplication.components.FavoritesRow
-import lopez.ibarra.myapplication.components.PokemonCell
-import lopez.ibarra.myapplication.data.pkmnList
+import lopez.ibarra.myapplication.view.components.FavoritesRow
+import lopez.ibarra.myapplication.view.components.PokemonCell
+import lopez.ibarra.myapplication.model.data.pkmnList
 
 @Composable
 fun MenuPokedexScreen(innerPadding: PaddingValues, onNavigateToDetail: (id: Int) -> Unit) {

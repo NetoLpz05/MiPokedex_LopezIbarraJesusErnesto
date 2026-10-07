@@ -1,4 +1,4 @@
-package lopez.ibarra.myapplication.domain
+package lopez.ibarra.myapplication.model.domain
 
 data class Pokemon(
     val name: String,

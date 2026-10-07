@@ -1,4 +1,4 @@
-package lopez.ibarra.myapplication.components
+package lopez.ibarra.myapplication.view.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,8 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import lopez.ibarra.myapplication.data.pkmnList
-import lopez.ibarra.myapplication.domain.Pokemon
+import lopez.ibarra.myapplication.model.data.pkmnList
+import lopez.ibarra.myapplication.model.domain.Pokemon
 import lopez.ibarra.myapplication.ui.theme.ComposePokedexTheme
 
 @Composable

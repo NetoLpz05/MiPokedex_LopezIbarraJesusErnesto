@@ -3,9 +3,9 @@ package lopez.ibarra.myapplication.navigation
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.*
-import lopez.ibarra.myapplication.data.getPokemon
-import lopez.ibarra.myapplication.screens.MenuPokedexScreen
-import lopez.ibarra.myapplication.screens.PokemonDetailScreen
+import lopez.ibarra.myapplication.model.data.getPokemon
+import lopez.ibarra.myapplication.view.screens.MenuPokedexScreen
+import lopez.ibarra.myapplication.view.screens.PokemonDetailScreen
 
 @Composable
 fun MyApp(innerPadding: PaddingValues){

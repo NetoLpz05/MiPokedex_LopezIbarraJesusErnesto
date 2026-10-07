@@ -1,4 +1,4 @@
-package lopez.ibarra.myapplication.components
+package lopez.ibarra.myapplication.view.components
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,7 +9,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import lopez.ibarra.myapplication.data.pkmnList
+import lopez.ibarra.myapplication.model.data.pkmnList
 import lopez.ibarra.myapplication.ui.theme.ComposePokedexTheme
 
 class PokedexList : ComponentActivity() {
