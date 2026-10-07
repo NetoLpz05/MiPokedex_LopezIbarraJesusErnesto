@@ -12,7 +12,12 @@ val Pink40 = Color(0xFF7D5260)
 
 val White = Color(0xFFFAFAFA)
 val Red = Color(0xFF8F130B)
+
+// Extra colors for Switch
 val Green = Color(0xFF81CA85)
+val LightGreen = Color(0xFFCCFFCE)
+val Blue = Color(0xFF4D92D2)
+val LightBlue = Color(0xFFA5CEFD)
 
 //Pkmn Color Types :)
 val leaf_green = Color(0xFF73C336)

@@ -16,12 +16,13 @@ import lopez.ibarra.myapplication.ui.theme.*
 import lopez.ibarra.myapplication.utilities.getColorByType
 
 @Composable
-fun PokemonRow(pokemon: Pokemon) {
+fun PokemonRow(pokemon: Pokemon, onNavigateToDetail: (Int) -> Unit) {
     val colors = getColorByType(pokemon.type)
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp),
+            .padding(10.dp)
+            .clickable { onNavigateToDetail(pokemon.number) },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
@@ -67,11 +68,16 @@ fun PokemonRow(pokemon: Pokemon) {
 }
 
 @Composable
-fun FavoritePokemon(pokemon: Pokemon, onNavigateToDetail: (id:Int)->Unit){
+fun FavoritePokemon(pokemon: Pokemon, onNavigateToDetail: (id: Int) -> Unit) {
     val colors = getColorByType(pokemon.type)
-    Column(Modifier.width(150.dp).padding(vertical = 15.dp)
-        .clickable(true, onClick = {onNavigateToDetail(pokemon.number as Int)})
-        , verticalArrangement = Arrangement.spacedBy(10.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(
+        Modifier
+            .width(150.dp)
+            .padding(vertical = 15.dp)
+            .clickable(true, onClick = { onNavigateToDetail(pokemon.number) }),
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Box() {
             Box(
                 Modifier.border(
@@ -92,24 +98,27 @@ fun FavoritePokemon(pokemon: Pokemon, onNavigateToDetail: (id:Int)->Unit){
                 Image(
                     painterResource(pokemon.image),
                     contentDescription = "${pokemon.name} image",
-                    Modifier.width(75.dp).align(Alignment.Center)
+                    Modifier
+                        .width(75.dp)
+                        .align(Alignment.Center)
                         .padding(5.dp)
                 )
 
             }
             NumberChip("${pokemon.number}", Modifier.align(Alignment.BottomEnd).offset(15.dp, 15.dp), colors)
         }
-        Text(pokemon.name, style = Typography.labelLarge)
+        Text(pokemon.name, style = MaterialTheme.typography.labelLarge)
     }
-
 }
 
 @Composable
-fun PokemonCell(pokemon: Pokemon) {
+fun PokemonCell(pokemon: Pokemon, onNavigateToDetail: (Int) -> Unit) {
     val colors = getColorByType(pokemon.type)
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(5.dp)
+        modifier = Modifier
+            .padding(5.dp)
+            .clickable { onNavigateToDetail(pokemon.number) }
     ) {
         Box(contentAlignment = Alignment.TopEnd) {
             Image(
@@ -141,7 +150,8 @@ fun PokemonElementPreview() {
                 pokemon = Pokemon(
                     "Ogerpon", 1, "Grass", "Ogerpon description",
                     0.7f, 6.9f, true, "Overgrow", R.drawable.ogerpon, listOf(1, 2, 3)
-                )
+                ),
+                onNavigateToDetail = {}
             )
             FavoritePokemon(
                 pokemon = Pokemon(
@@ -154,7 +164,8 @@ fun PokemonElementPreview() {
                 pokemon = Pokemon(
                     "Ogerpon", 1, "Grass", "Ogerpon description",
                     0.7f, 6.9f, true, "Overgrow", R.drawable.ogerpon, listOf(1, 2, 3)
-                )
+                ),
+                onNavigateToDetail = {}
             )
         }
     }

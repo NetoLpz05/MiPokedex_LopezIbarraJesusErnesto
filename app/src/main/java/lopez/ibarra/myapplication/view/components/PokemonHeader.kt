@@ -25,7 +25,7 @@ import lopez.ibarra.myapplication.utilities.getColorByType
 
 @Composable
 fun PokemonHeader(pokemon: Pokemon, pkmnNum:Int, fav: Boolean){
-    val colors = getColorByType(pokemon)
+    val colors = getColorByType(pokemon.type)
     Row(Modifier.fillMaxWidth().padding(15.dp).background(colors.first), horizontalArrangement = Arrangement.SpaceBetween){
         Column{
             Text(pokemon.name)

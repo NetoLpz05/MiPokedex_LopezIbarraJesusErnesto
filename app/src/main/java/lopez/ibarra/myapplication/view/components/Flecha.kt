@@ -16,18 +16,25 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun OtherPkmn(posicion: String, imagen: Int, pkmnnombre: String, pkmnnumber: Int, modifier: Modifier = Modifier) {
+fun OtherPkmn(
+    posicion: String,
+    imagen: Int,
+    pkmnnombre: String,
+    pkmnnumber: Int,
+    modifier: Modifier = Modifier,
+    onArrowClick: () -> Unit
+) {
 
     val esizquierda = posicion.lowercase() == "izquierda"
 
     Row(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
+        modifier = modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
 
         if (esizquierda) {
-            ArrowButton(direction = "izquierda")
+            ArrowButton(direction = "izquierda", onClick = onArrowClick)
         }
 
         Row(
@@ -53,16 +60,16 @@ fun OtherPkmn(posicion: String, imagen: Int, pkmnnombre: String, pkmnnumber: Int
         }
 
         if (!esizquierda) {
-            ArrowButton(direction = "derecha")
+            ArrowButton(direction = "derecha", onClick = onArrowClick)
         }
     }
 }
 
 @Composable
-private fun ArrowButton(direction: String) {
+private fun ArrowButton(direction: String, onClick: () -> Unit) {
 
     IconButton(
-        onClick = { },
+        onClick = onClick,
         modifier = Modifier.size(50.dp).clip(CircleShape).background(Color(0xFFE0E0E0))
     ) {
         Image(

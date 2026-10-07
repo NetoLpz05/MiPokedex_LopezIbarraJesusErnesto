@@ -7,34 +7,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import lopez.ibarra.myapplication.model.domain.Pokemon
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+import androidx.compose.ui.*
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import lopez.ibarra.myapplication.view.components.Ability
-import lopez.ibarra.myapplication.view.components.Chip
-import lopez.ibarra.myapplication.view.components.OtherPkmn
+import lopez.ibarra.myapplication.view.components.*
 import lopez.ibarra.myapplication.ui.theme.ComposePokedexTheme
 import lopez.ibarra.myapplication.ui.theme.White
 import lopez.ibarra.myapplication.utilities.getColorByType
 import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.lazy.itemsIndexed
-import lopez.ibarra.myapplication.model.data.showAllPokemon
+import lopez.ibarra.myapplication.model.data.*
 import lopez.ibarra.myapplication.view.components.PokemonHeader
 
 @Composable
@@ -97,15 +85,23 @@ fun PokemonCard(name: String, height: Float, weight: Float, description: String,
 
 
 @Composable
-fun PokemonDetailScreen(innerPadding: PaddingValues, pokemon: Pokemon) {
-    val colors = getColorByType(pokemon)
-    val evolutions = showAllPokemon().filter {
+fun PokemonDetailScreen(innerPadding: PaddingValues, pokemonId: Int, onNavigateDetail: (Int) -> Unit) {
+    val pokemon = getPokemon(pokemonId)
+    val colors = getColorByType(pokemon.type)
+    val allPokemon = showAllPokemon()
+    val evolutions = allPokemon.filter {
         pokemon.evolutions.contains(it.number)
     }
+
+    val index = allPokemon.indexOfFirst { it.number == pokemon.number }
+    val prev = if (index > 0) allPokemon[index - 1] else null
+    val next = if (index < allPokemon.size - 1) allPokemon[index + 1] else null
+
     Column(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .background(colors.first)
+            .padding(innerPadding)
     ) {
         PokemonHeader(pokemon, pokemon.number, pokemon.fav)
 
@@ -120,35 +116,32 @@ fun PokemonDetailScreen(innerPadding: PaddingValues, pokemon: Pokemon) {
             modifier = Modifier.fillMaxWidth().background(White).padding(vertical = 16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            prevNext.first?.let { prev ->
-
+            prev?.let { p ->
                 Row(
                     modifier = Modifier.weight(1f),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-
                     OtherPkmn(
                         posicion = "izquierda",
-                        imagen = prev.image,
-                        pkmnnombre = prev.name,
-                        pkmnnumber = prev.number,
-                        onArrowClick = { onNavigateDetail(prev.number) }
+                        imagen = p.image,
+                        pkmnnombre = p.name,
+                        pkmnnumber = p.number,
+                        onArrowClick = { onNavigateDetail(p.number) }
                     )
                 }
             }
 
-            prevNext.second?.let { next ->
+            next?.let { n ->
                 Row(modifier = Modifier.weight(1f),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.End
                 ) {
-
                     OtherPkmn(
                         posicion = "derecha",
-                        imagen = next.image,
-                        pkmnnombre = next.name,
-                        pkmnnumber = next.number,
-                        onArrowClick = { onNavigateDetail(next.number) }
+                        imagen = n.image,
+                        pkmnnombre = n.name,
+                        pkmnnumber = n.number,
+                        onArrowClick = { onNavigateDetail(n.number) }
                     )
                 }
             }
@@ -159,18 +152,7 @@ fun PokemonDetailScreen(innerPadding: PaddingValues, pokemon: Pokemon) {
 @Preview(showBackground = true)
 @Composable
 fun PokemonDetailPreview() {
-
-    val pokemonList = showAllPokemon()
-    val pokemon = pokemonList[0]
-
-    val index = pokemonList.indexOfFirst { it.number == pokemon.number }
-
-    val prev = pokemonList.getOrNull(index - 1)
-    val next = pokemonList.getOrNull(index + 1)
-
     ComposePokedexTheme {
-        PokemonDetailScreen(pokemon = pokemon, prevNext = Pair(prev, next),
-            onNavigateDetail = {}
-        )
+        PokemonDetailScreen(innerPadding = PaddingValues(0.dp), pokemonId = 1, onNavigateDetail = {})
     }
 }

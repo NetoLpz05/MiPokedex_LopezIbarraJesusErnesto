@@ -29,7 +29,7 @@ fun FavoritesRow(favoriteList: List<Pokemon>, onNavigateToDetail:(id: Int) -> Un
 }
 
 @Composable
-fun PokedexGrid(pokemonList: List<Pokemon>, modifier: Modifier = Modifier) {
+fun PokedexGrid(pokemonList: List<Pokemon>, modifier: Modifier = Modifier, onNavigateToDetail: (Int) -> Unit) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(3),
         contentPadding = PaddingValues(horizontal = 5.dp, vertical = 20.dp),
@@ -38,20 +38,20 @@ fun PokedexGrid(pokemonList: List<Pokemon>, modifier: Modifier = Modifier) {
         modifier = modifier
     ) {
         items(pokemonList) { pokemon ->
-            PokemonCell(pokemon)
+            PokemonCell(pokemon, onNavigateToDetail)
         }
     }
 }
 
 @Composable
-fun MenuPokedex(pokemonList: List<Pokemon>, innerPadding: PaddingValues = PaddingValues(0.dp)) {
-    PokedexGrid(pokemonList = pokemonList, modifier = Modifier.padding(innerPadding))
+fun MenuPokedex(pokemonList: List<Pokemon>, innerPadding: PaddingValues = PaddingValues(0.dp), onNavigateToDetail: (Int) -> Unit) {
+    PokedexGrid(pokemonList = pokemonList, modifier = Modifier.padding(innerPadding), onNavigateToDetail = onNavigateToDetail)
 }
 
 @Preview(showBackground = true)
 @Composable
 fun MenuPokedexPreview() {
     ComposePokedexTheme {
-        MenuPokedex(pokemonList = pkmnList)
+        MenuPokedex(pokemonList = pkmnList, onNavigateToDetail = {})
     }
 }

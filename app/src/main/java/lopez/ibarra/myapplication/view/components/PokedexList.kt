@@ -26,7 +26,7 @@ class PokedexList : ComponentActivity() {
 fun PokedexListContent() {
     ComposePokedexTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-            MenuPokedex(pokemonList = pkmnList, innerPadding = innerPadding)
+            MenuPokedex(pokemonList = pkmnList, innerPadding = innerPadding, onNavigateToDetail = {})
         }
     }
 }
