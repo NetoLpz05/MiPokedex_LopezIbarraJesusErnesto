@@ -13,7 +13,7 @@ import lopez.ibarra.myapplication.components.PokemonCell
 import lopez.ibarra.myapplication.data.pkmnList
 
 @Composable
-fun MenuPokedexScreen(innerPadding: PaddingValues, onNavigateDetail: (id: Int) -> Unit) {
+fun MenuPokedexScreen(innerPadding: PaddingValues, onNavigateToDetail: (id: Int) -> Unit) {
     val favorites = pkmnList.filter { it.fav }
 
     LazyVerticalGrid(columns = GridCells.Fixed(3),
@@ -25,7 +25,7 @@ fun MenuPokedexScreen(innerPadding: PaddingValues, onNavigateDetail: (id: Int) -
                         style = MaterialTheme.typography.headlineSmall,
                         modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                     )
-                    FavoritesRow(favoriteList = favorites)
+                    FavoritesRow(favoriteList = favorites, onNavigateToDetail)
                 }
             }
         }
@@ -49,6 +49,6 @@ fun MenuPokedexScreenPreview() {
     MaterialTheme {
         MenuPokedexScreen(
             innerPadding = PaddingValues(0.dp)
-        )
+                , {})
     }
 }

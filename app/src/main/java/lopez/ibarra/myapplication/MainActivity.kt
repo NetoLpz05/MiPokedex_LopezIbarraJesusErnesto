@@ -9,6 +9,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import lopez.ibarra.myapplication.navigation.MyApp
 import lopez.ibarra.myapplication.screens.MenuPokedexScreen
 import lopez.ibarra.myapplication.ui.theme.ComposePokedexTheme
 
@@ -19,7 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ComposePokedexTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MenuPokedexScreen(innerPadding = innerPadding)
+                    MyApp(innerPadding)
                 }
             }
         }
@@ -31,9 +32,7 @@ class MainActivity : ComponentActivity() {
 fun MainActivityPreview() {
     ComposePokedexTheme {
         Scaffold(Modifier.fillMaxSize()) { innerPadding ->
-            MenuPokedexScreen(
-                innerPadding = innerPadding
-            )
+            MyApp(innerPadding)
         }
     }
 }

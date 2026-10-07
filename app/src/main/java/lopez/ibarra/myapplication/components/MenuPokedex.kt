@@ -17,13 +17,13 @@ import lopez.ibarra.myapplication.domain.Pokemon
 import lopez.ibarra.myapplication.ui.theme.ComposePokedexTheme
 
 @Composable
-fun FavoritesRow(favoriteList: List<Pokemon>) {
+fun FavoritesRow(favoriteList: List<Pokemon>, onNavigateToDetail:(id: Int) -> Unit) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         contentPadding = PaddingValues(horizontal = 10.dp)
     ) {
         items(favoriteList) { pokemon ->
-            FavoritePokemon(pokemon)
+            FavoritePokemon(pokemon, onNavigateToDetail)
         }
     }
 }

@@ -315,14 +315,13 @@ val pkmnList = listOf(
         evolutions = listOf(133,134)
     )
 )
-fun showAllPokemon(): List<Pokemon> {
-    return pkmnList
-}
-
-fun getOnePokemon(): Pokemon{
-    return pkmnList.get((0..9).random())
-}
 
 fun getPokemon(id:Int): Pokemon{
     return pkmnList.filter { pokemon -> pokemon.number == id }.get(0)
+}
+
+fun getFavoritePokemons(): List<Pokemon>{
+    return pkmnList.filter {
+        it.fav == true
+    }
 }

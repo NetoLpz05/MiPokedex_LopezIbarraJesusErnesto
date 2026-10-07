@@ -10,13 +10,15 @@ import lopez.ibarra.myapplication.screens.PokemonDetailScreen
 @Composable
 fun MyApp(innerPadding: PaddingValues){
     val navController = rememberNavController()
-    NavHost(navController, startDestination = PokemonList){
+    NavHost(navController, startDestination= PokemonList){
         composable<PokemonList>{
-            MenuPokedexScreen(innerPadding, onNavigateDetail = {id -> navController.navigate(route = PokemonDetail(id))})
+            MenuPokedexScreen(innerPadding,
+                onNavigateToDetail = {id-> navController.navigate(route = PokemonDetail(id)) })
         }
 
         composable<PokemonDetail>{
-            PokemonDetailScreen(innerPadding, getPokemon(id))
+            val pokemon = it.arguments?.getInt("pokemon") ?: -1
+            PokemonDetailScreen(innerPadding, getPokemon(pokemon))
         }
     }
 }
