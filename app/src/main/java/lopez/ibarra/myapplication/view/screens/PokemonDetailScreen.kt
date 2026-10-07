@@ -9,6 +9,7 @@ import lopez.ibarra.myapplication.model.domain.Pokemon
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -96,7 +97,7 @@ fun PokemonCard(name: String, height: Float, weight: Float, description: String,
 
 
 @Composable
-fun PokemonDetailScreen(pokemon: Pokemon, prevNext: Pair<Pokemon?, Pokemon?>, onNavigateDetail: (Int) -> Unit, modifier: Modifier = Modifier) {
+fun PokemonDetailScreen(innerPadding: PaddingValues, pokemon: Pokemon) {
     val colors = getColorByType(pokemon)
     val evolutions = showAllPokemon().filter {
         pokemon.evolutions.contains(it.number)
