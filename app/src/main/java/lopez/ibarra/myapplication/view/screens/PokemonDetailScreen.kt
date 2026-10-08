@@ -8,9 +8,10 @@ import androidx.compose.ui.res.painterResource
 import lopez.ibarra.myapplication.model.domain.Pokemon
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.*
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
@@ -18,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import lopez.ibarra.myapplication.view.components.*
 import lopez.ibarra.myapplication.ui.theme.ComposePokedexTheme
-import lopez.ibarra.myapplication.ui.theme.White
 import lopez.ibarra.myapplication.utilities.getColorByType
 import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -34,7 +34,7 @@ fun PokemonCard(name: String, height: Float, weight: Float, description: String,
             .zIndex(2f).size(150.dp), contentScale = ContentScale.Fit)
         Card(Modifier.fillMaxWidth().fillMaxHeight(),
             elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-            colors = CardDefaults.cardColors(White))
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface))
         {
             Column(Modifier.fillMaxWidth()) {
                 Chip(type, typeColor, Modifier.padding(top = 70.dp).
@@ -51,15 +51,25 @@ fun PokemonCard(name: String, height: Float, weight: Float, description: String,
                     }
                 }
                 Row(Modifier.fillMaxWidth(.8f).align(Alignment.CenterHorizontally).padding(25.dp)) {
-                    Text(description)
+                    Text(text = description, color = MaterialTheme.colorScheme.onSurface)
                 }
-                Text(text = "Evolución", modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 10.dp))
+                Text(
+                    text = "Evolución", 
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 10.dp)
+                )
 
                 if (evolutions.size <= 1) {
-                    Text(text = "Este Pokémon no tiene evolución o no hay datos registrados de las evoluciones",
+                    Text(text = "Este Pokémon no tiene evolución o es un Pokémon legendario / singular",
+                        color = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.padding(16.dp).align(Alignment.CenterHorizontally))
                 } else {
-                    LazyColumn(modifier = Modifier.fillMaxWidth().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                    LazyRow(
+                        modifier = Modifier.fillMaxWidth().padding(16.dp), 
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
                         itemsIndexed(evolutions) { index, evo ->
                             Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(horizontal = 8.dp)) {
                                 Image(
@@ -67,11 +77,12 @@ fun PokemonCard(name: String, height: Float, weight: Float, description: String,
                                     contentDescription = evo.name,
                                     modifier = Modifier.size(70.dp)
                                 )
-                                Text(evo.name)
+                                Text(text = evo.name, color = MaterialTheme.colorScheme.onSurface)
                             }
                             if (index < evolutions.size - 1) {
                                 Text(
-                                    text = "↓",
+                                    text = "→",
+                                    color = MaterialTheme.colorScheme.onSurface,
                                     modifier = Modifier.padding(horizontal = 6.dp)
                                 )
                             }
@@ -101,9 +112,11 @@ fun PokemonDetailScreen(innerPadding: PaddingValues, pokemonId: Int, onNavigateD
         modifier = Modifier
             .fillMaxSize()
             .background(colors.first)
-            .padding(innerPadding)
     ) {
-        PokemonHeader(pokemon, pokemon.number, pokemon.fav)
+        // Aplicar el padding superior solo al header
+        Box(modifier = Modifier.padding(top = innerPadding.calculateTopPadding())) {
+            PokemonHeader(pokemon, pokemon.number, pokemon.fav)
+        }
 
         Box(modifier = Modifier.weight(1f)) {
             PokemonCard(
@@ -113,7 +126,11 @@ fun PokemonDetailScreen(innerPadding: PaddingValues, pokemonId: Int, onNavigateD
         }
 
         Row(
-            modifier = Modifier.fillMaxWidth().background(White).padding(vertical = 16.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.surface)
+                .padding(bottom = innerPadding.calculateBottomPadding())
+                .padding(vertical = 16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             prev?.let { p ->
@@ -153,6 +170,6 @@ fun PokemonDetailScreen(innerPadding: PaddingValues, pokemonId: Int, onNavigateD
 @Composable
 fun PokemonDetailPreview() {
     ComposePokedexTheme {
-        PokemonDetailScreen(innerPadding = PaddingValues(0.dp), pokemonId = 1, onNavigateDetail = {})
+        PokemonDetailScreen(innerPadding = PaddingValues(0.dp), pokemonId = 1017, onNavigateDetail = {})
     }
 }

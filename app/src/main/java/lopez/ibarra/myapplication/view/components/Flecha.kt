@@ -4,8 +4,8 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.*
@@ -24,7 +24,6 @@ fun OtherPkmn(
     modifier: Modifier = Modifier,
     onArrowClick: () -> Unit
 ) {
-
     val esizquierda = posicion.lowercase() == "izquierda"
 
     Row(
@@ -32,7 +31,6 @@ fun OtherPkmn(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-
         if (esizquierda) {
             ArrowButton(direction = "izquierda", onClick = onArrowClick)
         }
@@ -42,7 +40,6 @@ fun OtherPkmn(
             horizontalArrangement = Arrangement.Center,
             modifier = Modifier.weight(1f)
         ) {
-
             if (!esizquierda) {
                 PokemonText(pkmnnombre, pkmnnumber)
             }
@@ -50,7 +47,7 @@ fun OtherPkmn(
             Image(
                 painter = painterResource(imagen),
                 contentDescription = pkmnnombre,
-                modifier = Modifier.size(90.dp).padding(horizontal = 8.dp),
+                modifier = Modifier.size(80.dp).padding(horizontal = 8.dp),
                 contentScale = ContentScale.Fit
             )
 
@@ -67,18 +64,21 @@ fun OtherPkmn(
 
 @Composable
 private fun ArrowButton(direction: String, onClick: () -> Unit) {
-
     IconButton(
         onClick = onClick,
-        modifier = Modifier.size(50.dp).clip(CircleShape).background(Color(0xFFE0E0E0))
+        modifier = Modifier
+            .size(45.dp)
+            .clip(CircleShape)
+            .background(MaterialTheme.colorScheme.surfaceVariant)
     ) {
-        Image(
+        Icon(
             imageVector = if (direction == "izquierda")
-                Icons.Filled.ArrowBack
+                Icons.AutoMirrored.Filled.ArrowBack
             else
-                Icons.Filled.ArrowForward,
+                Icons.AutoMirrored.Filled.ArrowForward,
             contentDescription = direction,
-            modifier = Modifier.size(20.dp)
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.size(24.dp)
         )
     }
 }
@@ -86,7 +86,15 @@ private fun ArrowButton(direction: String, onClick: () -> Unit) {
 @Composable
 private fun PokemonText(name: String, number: Int) {
     Column {
-        Text(text = name)
-        Text(text = "N.º ${String.format("%04d", number)}")
+        Text(
+            text = name, 
+            style = MaterialTheme.typography.labelLarge,
+            color = MaterialTheme.colorScheme.onSurface
+        )
+        Text(
+            text = "N.º ${String.format("%04d", number)}",
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+        )
     }
 }

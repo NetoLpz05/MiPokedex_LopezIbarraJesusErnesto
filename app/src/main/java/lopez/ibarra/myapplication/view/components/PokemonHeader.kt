@@ -2,18 +2,13 @@ package lopez.ibarra.myapplication.view.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,44 +21,37 @@ import lopez.ibarra.myapplication.utilities.getColorByType
 @Composable
 fun PokemonHeader(pokemon: Pokemon, pkmnNum:Int, fav: Boolean){
     val colors = getColorByType(pokemon.type)
-    Row(Modifier.fillMaxWidth().padding(15.dp).background(colors.first), horizontalArrangement = Arrangement.SpaceBetween){
-        Column{
-            Text(pokemon.name)
-            Text("#${pkmnNum}", modifier = Modifier.align(Alignment.End))
+    Row(
+        Modifier.fillMaxWidth().padding(15.dp).background(colors.first), 
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Column {
+            Text(
+                text = pokemon.name, 
+                style = MaterialTheme.typography.headlineMedium,
+                color = colors.second
+            )
+            Text(
+                text = "#${pkmnNum}", 
+                style = MaterialTheme.typography.titleMedium,
+                color = colors.second
+            )
         }
-        Box{
-            Image(painter = painterResource(R.drawable.pokeball), contentDescription = "pokeball image",
-                contentScale = ContentScale.Fit, modifier = Modifier.size(150.dp)
-                    .offset(30.dp, 20.dp))
+        Box {
+            Image(
+                painter = painterResource(R.drawable.pokeball), 
+                contentDescription = "pokeball image",
+                contentScale = ContentScale.Fit, 
+                modifier = Modifier.size(120.dp).offset(20.dp, 10.dp).alpha(0.3f)
+            )
             Image(
                 painter = painterResource(
                     if (fav) R.drawable.star_filled else R.drawable.star_outline
                 ),
                 contentDescription = if (fav) "yellow star filled" else "yellow star outlined",
-                modifier = Modifier.align(Alignment.TopEnd)
+                modifier = Modifier.size(32.dp).align(Alignment.TopEnd)
             )
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PokemonHeaderPreview(){
-    ComposePokedexTheme {
-
-        val pokemon = Pokemon(
-            "Ogerpon",
-            1017,
-            "Planta",
-            "Es bromista y extremadamente curioso.",
-            1.2f,
-            39.8f,
-            true,
-            "Competitivo",
-            R.drawable.ogerpon,
-            evolutions = TODO()
-        )
-
-        PokemonHeader(pokemon, pokemon.number, pokemon.fav)
     }
 }
