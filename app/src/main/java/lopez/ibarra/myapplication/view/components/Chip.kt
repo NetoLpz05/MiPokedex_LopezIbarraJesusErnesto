@@ -33,13 +33,13 @@ fun Chip(text: String, color: Color, modifier: Modifier = Modifier) {
 
 @Composable
 fun NumberChip(text: String, modifier: Modifier = Modifier, colors: Pair<Color, Color>) {
-    Row(
+    Box(
         modifier = modifier
-            .size(30.dp)
+            .widthIn(min = 30.dp)
+            .height(30.dp)
             .background(colors.first, shape = CircleShape)
-            .padding(5.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
+            .padding(horizontal = 6.dp),
+        contentAlignment = Alignment.Center
     ) {
         Text(
             text = text,
@@ -60,5 +60,5 @@ fun ChipPreview(){
 @Preview(showBackground = true)
 @Composable
 fun NumberChipPreview() {
-    NumberChip(text = "1", colors = Pair(leaf_green, OffWhite))
+    NumberChip(text = "1017", colors = Pair(leaf_green, OffWhite))
 }

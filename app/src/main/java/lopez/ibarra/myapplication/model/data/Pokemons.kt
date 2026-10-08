@@ -313,6 +313,32 @@ val pkmnList = listOf(
         "Absorbe Agua",
         R.drawable.vaporeon,
         evolutions = listOf(133,134)
+    ),
+
+    Pokemon(
+        "Skitty",
+        300,
+        "Normal",
+        "A Skitty le encanta mover cosas e ir detrás de ellas. Es de todos sabido que se dedica a ir detrás de su propia cola y que, al final, acaba mareándose",
+        0.6f,
+        11.0f,
+        false,
+        "Gran Encanto",
+        R.drawable.skitty,
+        evolutions = listOf(300,3001)
+    ),
+
+    Pokemon(
+        "Delcatty",
+        301,
+        "Normal",
+        "Delcatty prefiere llevar una vida independiente y hacer lo que se le antoje. Como este Pokémon come y duerme según vea en cada momento, no se puede decir que tenga unos hábitos regulares en el día a día",
+        1.1f,
+        32.6f,
+        false,
+        "Gran Encanto",
+        R.drawable.delcatty,
+        evolutions = listOf(300,3001)
     )
 )
 

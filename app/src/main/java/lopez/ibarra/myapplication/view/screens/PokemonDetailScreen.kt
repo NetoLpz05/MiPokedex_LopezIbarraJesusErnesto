@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.ui.*
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
@@ -125,41 +126,45 @@ fun PokemonDetailScreen(innerPadding: PaddingValues, pokemonId: Int, onNavigateD
                 evolutions = evolutions)
         }
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.surface)
-                .padding(bottom = innerPadding.calculateBottomPadding())
-                .padding(vertical = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
+        Surface(
+            color = MaterialTheme.colorScheme.surface,
+            modifier = Modifier.fillMaxWidth()
         ) {
-            prev?.let { p ->
-                Row(
-                    modifier = Modifier.weight(1f),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    OtherPkmn(
-                        posicion = "izquierda",
-                        imagen = p.image,
-                        pkmnnombre = p.name,
-                        pkmnnumber = p.number,
-                        onArrowClick = { onNavigateDetail(p.number) }
-                    )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = innerPadding.calculateBottomPadding())
+                    .padding(vertical = 16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                prev?.let { p ->
+                    Row(
+                        modifier = Modifier.weight(1f),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        OtherPkmn(
+                            posicion = "izquierda",
+                            imagen = p.image,
+                            pkmnnombre = p.name,
+                            pkmnnumber = p.number,
+                            onArrowClick = { onNavigateDetail(p.number) }
+                        )
+                    }
                 }
-            }
 
-            next?.let { n ->
-                Row(modifier = Modifier.weight(1f),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.End
-                ) {
-                    OtherPkmn(
-                        posicion = "derecha",
-                        imagen = n.image,
-                        pkmnnombre = n.name,
-                        pkmnnumber = n.number,
-                        onArrowClick = { onNavigateDetail(n.number) }
-                    )
+                next?.let { n ->
+                    Row(modifier = Modifier.weight(1f),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.End
+                    ) {
+                        OtherPkmn(
+                            posicion = "derecha",
+                            imagen = n.image,
+                            pkmnnombre = n.name,
+                            pkmnnumber = n.number,
+                            onArrowClick = { onNavigateDetail(n.number) }
+                        )
+                    }
                 }
             }
         }

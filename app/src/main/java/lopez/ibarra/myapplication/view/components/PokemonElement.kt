@@ -50,11 +50,11 @@ fun PokemonRow(pokemon: Pokemon, onNavigateToDetail: (Int) -> Unit) {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "Height: ${pokemon.height}",
+                    text = "Height: ${pokemon.height} m",
                     style = MaterialTheme.typography.labelMedium
                 )
                 Text(
-                    text = "Weight: ${pokemon.weight}",
+                    text = "Weight: ${pokemon.weight} kg",
                     style = MaterialTheme.typography.labelMedium
                 )
             }
