@@ -7,8 +7,9 @@ data class Pokemon(
     val description: String,
     val height: Float,
     val weight: Float,
-    val fav: Boolean,
+    var fav: Boolean,
     val ability: String,
     val image: Int,
-    val evolutions: List<Int>
+    val evolutions: List<Int>,
+    val megaEvoIds: List<Int> = emptyList()
 )

@@ -1,43 +1,23 @@
 package lopez.ibarra.myapplication.model.data
 
+import androidx.compose.runtime.mutableStateListOf
 import lopez.ibarra.myapplication.R
 import lopez.ibarra.myapplication.model.domain.Pokemon
 
-val pkmnList = listOf(
-    //Ogerpon (Legendario, no tiene evo)
+// Usamos mutableStateListOf para que la UI reaccione a los cambios en los favoritos
+val pkmnList = mutableStateListOf(
     Pokemon(
-        "Ogerpon",
-        1017,
-        "Planta",
-        "Es bromista y extremadamente curioso. A la hora de combatir, " +
-                "se sirve del tipo de energía que contenga la máscara que lleve puesta.",
-        1.2f,
-        39.8f,
-        true,
-        "Competitivo",
-        R.drawable.ogerpon,
-        evolutions = listOf(1017)
+        "Ogerpon", 1017, "Planta",
+        "Es bromista y extremadamente curioso. A la hora de combatir, se sirve del tipo de energía que contenga la máscara que lleve puesta.",
+        1.2f, 39.8f, true, "Competitivo", R.drawable.ogerpon, listOf(1017)
     ),
-
-    //Litten
     Pokemon(
-        "Litten",
-        725,
-        "Fuego",
+        "Litten", 725, "Fuego",
         "Un Pokémon gato muy orgulloso. Ataca con bolas de pelo ardiente que produce en su estómago.",
-        0.4f,
-        4.3f,
-        false,
-        "Mar llamas",
-        R.drawable.litten,
-        evolutions = listOf(725, 726, 727)
+        0.4f, 4.3f, false, "Mar llamas", R.drawable.litten, listOf(725, 726, 727)
     ),
-
-    //Torracat (Evo de Litten)
     Pokemon(
-        "Torracat",
-        726,
-        "Fuego",
+        "Torracat", 726, "Fuego",
         "Posee un cascabel de fuego en el cuello que tintinea y desprende llamas cuando se prepara para atacar.",
         0.7f,
         25.0f,
@@ -102,6 +82,21 @@ val pkmnList = listOf(
         true,
         "Absorbe Electricidad",
         R.drawable.zeraora,
+        evolutions = listOf(807),
+        megaEvoIds = listOf(8070)
+    ),
+
+    //MEGA ZERAORA
+    Pokemon(
+        "Mega Zeraora",
+        8070,
+        "Electrico",
+        "La energía eléctrica que almacena en su cuerpo equivale a la de diez relámpagos. La electricidad se focaliza sobre todo en las protuberancias de su frente, pecho, espalda y manos.",
+        1.5f,
+        44.5f,
+        true,
+        "Sobrecarga",
+        R.drawable.megazeraora,
         evolutions = listOf(807)
     ),
 
@@ -133,7 +128,7 @@ val pkmnList = listOf(
         evolutions = listOf(92, 93, 94)
     ),
 
-    //Gengar (Evo de Haunter)
+    //Gengar
     Pokemon(
         "Gengar",
         94,
@@ -144,6 +139,21 @@ val pkmnList = listOf(
         false,
         "Cuerpo Maldito",
         R.drawable.gengar,
+        evolutions = listOf(92, 93, 94),
+        megaEvoIds = listOf(940)
+    ),
+
+    // Mega Gengar
+    Pokemon(
+        "Mega Gengar",
+        940,
+        "Fantasma/Veneno",
+        "La energía de la Megaevolución ha abierto una entrada a otra dimensión en su cuerpo. Se dice que este Pokémon solo tiene interés en atacar a seres vivos.",
+        1.4f,
+        40.5f,
+        false,
+        "Sombra Trampa",
+        R.drawable.megagengar,
         evolutions = listOf(92, 93, 94)
     ),
 
@@ -172,6 +182,35 @@ val pkmnList = listOf(
         true,
         "Foco Interno",
         R.drawable.lucario,
+        evolutions = listOf(447,448),
+        megaEvoIds = listOf(4480, 4481)
+    ),
+
+    // Mega Lucario
+    Pokemon(
+        "Mega Lucario",
+        4480,
+        "Lucha/Acero",
+        "Se concentra en su aura para prever los movimientos de sus oponentes. Su energía combativa se ha incrementado al máximo.",
+        1.3f,
+        57.5f,
+        false,
+        "Adaptable",
+        R.drawable.megalucario,
+        evolutions = listOf(447,448)
+    ),
+
+    //MEGA LUCARIO Z
+    Pokemon(
+        "Mega Lucario Z",
+        4481,
+        "Lucha/Acero",
+        "El pelaje que le crece alrededor de la cabeza y la cintura, y su cola con forma de abanico, le permiten ocultar parcialmente sus agresivos movimientos",
+        1.3f,
+        49.4f,
+        false,
+        "Aura Protectora",
+        R.drawable.lucarioz,
         evolutions = listOf(447,448)
     ),
 
@@ -214,7 +253,22 @@ val pkmnList = listOf(
         false,
         "Torrente",
         R.drawable.greninja,
-        evolutions = listOf(656,657,658)
+        evolutions = listOf(656,657,658),
+        megaEvoIds = listOf(6580)
+    ),
+
+    //MEGA GRENINJA
+    Pokemon(
+        "Mega Greninja",
+        6580,
+        "Agua/Siniestro",
+        "Queda suspendido de un shuriken de agua gigante creado a partir de una membrana gelatinosa que secreta su cuerpo.",
+        1.5f,
+        40.0f,
+        false,
+        "Mutatipo",
+        R.drawable.megagreninja,
+        evolutions = listOf(656,657,658),
     ),
 
     //Fennekin
@@ -256,6 +310,21 @@ val pkmnList = listOf(
         false,
         "Mar llamas",
         R.drawable.delphox,
+        evolutions = listOf(653,654,655),
+        megaEvoIds = listOf(6550)
+    ),
+
+    //MEGA DELPHOX
+    Pokemon(
+        "Mega Delphox",
+        6550,
+        "Fuego/Psiquico",
+        " Mega-Delphox controla las dos ramas que flotan junto a él, moviéndolas como si hubieran cobrado vida por arte de magia. Esto le permite desconcertar y confundir a sus rivales durante el combate",
+        1.5f,
+        39.0f,
+        false,
+        "Levitación",
+        R.drawable.megadelphox,
         evolutions = listOf(653,654,655)
     ),
 
@@ -271,6 +340,34 @@ val pkmnList = listOf(
         "Disfraz",
         R.drawable.mimikyu,
         evolutions = listOf(778)
+    ),
+
+    //Scorbunny
+    Pokemon(
+        "Scorbunny",
+        813,
+        "Fuego",
+        "Desata su verdadera fuerza cuando su cuerpo entra en calor. Por eso hace ejercicios de calentamiento.",
+        0.3f,
+        4.5f,
+        false,
+        "Mar Llamas",
+        R.drawable.scorbunny,
+        evolutions = listOf(813,814,815)
+    ),
+
+    //Raboot
+    Pokemon(
+        "Raboot",
+        814,
+        "Fuego",
+        "Su suave pelaje le permite calentar energía ígnea con mayor facilidad y así expulsar llamas todavía más potentes.",
+        0.6f,
+        9.0f,
+        false,
+        "Mar Llamas",
+        R.drawable.raboot,
+        evolutions = listOf(813,814,815)
     ),
 
     //Cincerace
@@ -350,4 +447,12 @@ fun getPokemon(id: Int): Pokemon {
 
 fun getFavoritePokemons(): List<Pokemon> {
     return pkmnList.filter { it.fav }
+}
+
+fun toggleFavorite(id: Int) {
+    val index = pkmnList.indexOfFirst { it.number == id }
+    if (index != -1) {
+        val pkmn = pkmnList[index]
+        pkmnList[index] = pkmn.copy(fav = !pkmn.fav)
+    }
 }
