@@ -1,9 +1,11 @@
 package lopez.ibarra.myapplication.view.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.*
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
@@ -24,7 +26,8 @@ import lopez.ibarra.myapplication.model.data.pkmnList
 import lopez.ibarra.myapplication.ui.theme.*
 
 @Composable
-fun MenuPokedexScreen(innerPadding: PaddingValues, onNavigateToDetail: (id: Int) -> Unit) {
+fun MenuPokedexScreen(innerPadding: PaddingValues, onNavigateToDetail: (id: Int) -> Unit,
+                      onNavigateToHunt: () -> Unit) {
     val favorites = pkmnList.filter { it.fav }
     var grid by remember { mutableStateOf(false) }
 
@@ -77,12 +80,18 @@ fun MenuPokedexScreen(innerPadding: PaddingValues, onNavigateToDetail: (id: Int)
             ) {
                 if (favorites.isNotEmpty()) {
                     item(span = { GridItemSpan(maxLineSpan) }) {
-                        Column {
-                            Text(
-                                text = "Mis Favoritos",
-                                style = MaterialTheme.typography.headlineSmall,
-                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-                            )
+                        Column(Modifier.padding(innerPadding)){
+                            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween){
+                                Text(text = "Mis Favoritos",
+                                    style = MaterialTheme.typography.headlineSmall,
+                                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                                )
+                                Button(onClick = {onNavigateToHunt()}){
+                                    Text("Capturar nuevo pokémon")
+                                }
+                            }
+
                             FavoritesRow(favoriteList = favorites, onNavigateToDetail)
                         }
                     }
@@ -137,7 +146,8 @@ fun MenuPokedexScreenPreview() {
     ComposePokedexTheme {
         MenuPokedexScreen(
             innerPadding = PaddingValues(0.dp),
-            onNavigateToDetail = {}
+            onNavigateToDetail = {},
+            onNavigateToHunt = {}
         )
     }
 }

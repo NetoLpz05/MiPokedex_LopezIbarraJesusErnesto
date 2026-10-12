@@ -10,3 +10,6 @@ data class PokemonDetail(val pokemon: Int)
 
 @Serializable
 data class PokemonMegaDetail(val pokemon: Int)
+
+@Serializable
+object PokemonHunt

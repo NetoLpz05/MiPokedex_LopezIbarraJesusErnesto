@@ -7,6 +7,7 @@ import androidx.navigation.toRoute
 import lopez.ibarra.myapplication.view.screens.MenuPokedexScreen
 import lopez.ibarra.myapplication.view.screens.PokemonDetailScreen
 import lopez.ibarra.myapplication.model.data.toggleFavorite
+import lopez.ibarra.myapplication.view.screens.PokemonHuntScreen
 
 @Composable
 fun MyApp(innerPadding: PaddingValues){
@@ -14,7 +15,8 @@ fun MyApp(innerPadding: PaddingValues){
     NavHost(navController, startDestination= PokemonList){
         composable<PokemonList>{
             MenuPokedexScreen(innerPadding,
-                onNavigateToDetail = {id-> navController.navigate(route = PokemonDetail(id)) })
+                onNavigateToDetail = {id-> navController.navigate(route = PokemonDetail(id)) },
+                onNavigateToHunt = {navController.navigate(route = PokemonHunt)})
         }
 
         composable<PokemonDetail>{ backStackEntry ->
@@ -36,7 +38,6 @@ fun MyApp(innerPadding: PaddingValues){
 
         composable<PokemonMegaDetail>{ backStackEntry ->
             val detail: PokemonMegaDetail = backStackEntry.toRoute()
-            // Podemos reusar la misma pantalla de detalle pero indicando que es modo Mega
             PokemonDetailScreen(
                 innerPadding = innerPadding,
                 pokemonId = detail.pokemon,
@@ -45,9 +46,13 @@ fun MyApp(innerPadding: PaddingValues){
                         popUpTo(PokemonList) { inclusive = false }
                     }
                 },
-                onNavigateToMega = {}, // En la pantalla de mega no mostramos otro botón de mega
+                onNavigateToMega = {},
                 onToggleFavorite = { id -> toggleFavorite(id) }
             )
+        }
+
+        composable<PokemonHunt>{
+            PokemonHuntScreen(innerPadding)
         }
     }
 }

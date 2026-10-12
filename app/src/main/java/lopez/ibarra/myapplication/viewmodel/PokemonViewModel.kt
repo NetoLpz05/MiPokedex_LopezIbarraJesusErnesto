@@ -4,10 +4,32 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import lopez.ibarra.myapplication.model.domain.Pokemon
 import androidx.compose.runtime.*
+import lopez.ibarra.myapplication.model.data.pkmnList
 
 class PokemonViewModel : ViewModel(){
     var wildPkmn by mutableStateOf<Pokemon?>(null)
-    fun capturePokemon(){
+        private set
 
+    var capturedPkmn by mutableStateOf(listOf<Pokemon>())
+        private set
+
+    var gonePkmn by mutableStateOf(false)
+
+    fun searchPkmn(){
+        wildPkmn = pkmnList.random()
+    }
+
+    fun capturePokemon(){
+        wildPkmn?.let {
+            var isCaptured = (1..2).random()
+            if (isCaptured == 1){
+                capturedPkmn = capturedPkmn + it
+                gonePkmn = false
+                wildPkmn = null
+            } else {
+                gonePkmn = true
+                wildPkmn = null
+            }
+        }
     }
 }
