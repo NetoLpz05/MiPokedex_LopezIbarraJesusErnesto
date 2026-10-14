@@ -12,6 +12,7 @@ import lopez.ibarra.myapplication.view.screens.PokemonHuntScreen
 @Composable
 fun MyApp(innerPadding: PaddingValues){
     val navController = rememberNavController()
+    val navigateToDetail = {id: Int -> navController.navigate(route = PokemonDetail(id))}
     NavHost(navController, startDestination= PokemonList){
         composable<PokemonList>{
             MenuPokedexScreen(innerPadding,
@@ -52,7 +53,7 @@ fun MyApp(innerPadding: PaddingValues){
         }
 
         composable<PokemonHunt>{
-            PokemonHuntScreen(innerPadding)
+            PokemonHuntScreen(innerPadding, onNavigateToDetail = navigateToDetail)
         }
     }
 }

@@ -25,6 +25,7 @@ import lopez.ibarra.myapplication.view.components.PokemonRow
 import lopez.ibarra.myapplication.model.data.pkmnList
 import lopez.ibarra.myapplication.ui.theme.*
 
+//Agregar boton para ir a la captura jsjs
 @Composable
 fun MenuPokedexScreen(innerPadding: PaddingValues, onNavigateToDetail: (id: Int) -> Unit,
                       onNavigateToHunt: () -> Unit) {
@@ -43,6 +44,9 @@ fun MenuPokedexScreen(innerPadding: PaddingValues, onNavigateToDetail: (id: Int)
                 text = if (grid) "Vista Cuadrícula" else "Vista Lista",
                 style = MaterialTheme.typography.titleMedium
             )
+            Button(onClick = onNavigateToHunt) {
+                Text("Capturar Pokémon")
+            }
             Switch(
                 checked = grid,
                 onCheckedChange = { grid = it },

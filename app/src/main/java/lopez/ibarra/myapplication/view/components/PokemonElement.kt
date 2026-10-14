@@ -16,7 +16,7 @@ import lopez.ibarra.myapplication.ui.theme.*
 import lopez.ibarra.myapplication.utilities.getColorByType
 
 @Composable
-fun PokemonRow(pokemon: Pokemon, onNavigateToDetail: (Int) -> Unit) {
+fun PokemonRow(pokemon: Pokemon, onNavigateToDetail: (id: Int) -> Unit) {
     val colors = getColorByType(pokemon.type)
     Row(
         modifier = Modifier
