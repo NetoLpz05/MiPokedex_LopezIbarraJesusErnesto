@@ -7,13 +7,22 @@ import androidx.navigation.toRoute
 import lopez.ibarra.myapplication.view.screens.MenuPokedexScreen
 import lopez.ibarra.myapplication.view.screens.PokemonDetailScreen
 import lopez.ibarra.myapplication.model.data.toggleFavorite
+import lopez.ibarra.myapplication.view.screens.LoginScreen
 import lopez.ibarra.myapplication.view.screens.PokemonHuntScreen
 
 @Composable
 fun MyApp(innerPadding: PaddingValues){
     val navController = rememberNavController()
     val navigateToDetail = {id: Int -> navController.navigate(route = PokemonDetail(id))}
+    val navigateToMenu = {
+        navController.navigate(PokemonList)
+    }
+
     NavHost(navController, startDestination= PokemonList){
+        composable <Login>{
+            LoginScreen(innerPadding, navigateToMenu)
+        }
+
         composable<PokemonList>{
             MenuPokedexScreen(innerPadding,
                 onNavigateToDetail = {id-> navController.navigate(route = PokemonDetail(id)) },

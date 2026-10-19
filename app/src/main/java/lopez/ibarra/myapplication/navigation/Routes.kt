@@ -13,3 +13,6 @@ data class PokemonMegaDetail(val pokemon: Int)
 
 @Serializable
 object PokemonHunt
+
+@Serializable
+object Login

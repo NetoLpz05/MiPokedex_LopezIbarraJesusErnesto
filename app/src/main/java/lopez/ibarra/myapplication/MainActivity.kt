@@ -1,5 +1,6 @@
 package lopez.ibarra.myapplication
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,8 +12,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import lopez.ibarra.myapplication.model.preferences.ARCHIVO
 import lopez.ibarra.myapplication.navigation.MyApp
 import lopez.ibarra.myapplication.ui.theme.ComposePokedexTheme
+import lopez.ibarra.myapplication.view.screens.LoginScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,10 +28,12 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                        MyApp(innerPadding)
+                        //MyApp(innerPadding)
+                        LoginScreen(innerPadding, {})
                     }
                 }
             }
+            val sharedP = getSharedPreferences(ARCHIVO, Context.MODE_PRIVATE)
         }
     }
 }
