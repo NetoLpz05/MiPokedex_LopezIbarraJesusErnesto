@@ -28,8 +28,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                        //MyApp(innerPadding)
-                        LoginScreen(innerPadding, {})
+                        MyApp(innerPadding)
+                        //LoginScreen(innerPadding, {})
                     }
                 }
             }

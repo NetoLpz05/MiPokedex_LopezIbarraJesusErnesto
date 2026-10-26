@@ -12,8 +12,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import lopez.ibarra.myapplication.viewmodel.UserViewModel
 
 @Composable
-fun LoginScreen(innerPadding: PaddingValues, onNavigateToMenu: ()-> Unit, viewModel: UserViewModel = viewModel(),
-                setSuccesfullLogin: (username: String, mail: String) -> Unit){
+fun LoginScreen(innerPadding: PaddingValues, onNavigateToMenu: ()-> Unit, viewModel: UserViewModel = viewModel()) {
     var user by remember { mutableStateOf("") }
     var password by remember {mutableStateOf("")}
 
