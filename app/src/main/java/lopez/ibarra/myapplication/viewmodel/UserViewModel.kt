@@ -8,8 +8,7 @@ import lopez.ibarra.myapplication.model.data.Users
 
 class UserViewModel(users: Users): ViewModel() {
     var loginError by mutableStateOf<Boolean>(false)
-    var errorDescription by mutableStateOf<String?>(null)
-
+    var errorDescription by mutableStateOf<String>("")
     val users = users
 
     fun login(user: String, password: String){
@@ -22,5 +21,9 @@ class UserViewModel(users: Users): ViewModel() {
             errorDescription = ""
             users.saveUser(user.email, user.name)
         }
+    }
+
+    fun isLoggedIn(): Boolean{
+        return users.isLoggedIn()
     }
 }

@@ -11,19 +11,19 @@ import lopez.ibarra.myapplication.view.screens.PokemonDetailScreen
 import lopez.ibarra.myapplication.model.data.toggleFavorite
 import lopez.ibarra.myapplication.view.screens.LoginScreen
 import lopez.ibarra.myapplication.view.screens.PokemonHuntScreen
+import lopez.ibarra.myapplication.viewmodel.UserViewModel
 
 @Composable
-fun MyApp(innerPadding: PaddingValues, context: Context){
+fun MyApp(innerPadding: PaddingValues, userViewModel: UserViewModel){
     val navController = rememberNavController()
     val navigateToDetail = {id: Int -> navController.navigate(route = PokemonDetail(id))}
     val navigateToMenu = {
         navController.navigate(PokemonList)
     }
-    val users = Users(context)
 
     NavHost(navController, startDestination= Login){
         composable <Login>{
-            LoginScreen(innerPadding, navigateToMenu)
+            LoginScreen(innerPadding, navigateToMenu, userViewModel)
         }
 
         composable<PokemonList>{

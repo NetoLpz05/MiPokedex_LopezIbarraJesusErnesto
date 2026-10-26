@@ -2,12 +2,21 @@ package lopez.ibarra.myapplication.view.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import lopez.ibarra.myapplication.viewmodel.UserViewModel
 
@@ -16,23 +25,40 @@ fun LoginScreen(innerPadding: PaddingValues, onNavigateToMenu: ()-> Unit, viewMo
     var user by remember { mutableStateOf("") }
     var password by remember {mutableStateOf("")}
 
-    Column() {
+    if(viewModel.isLoggedIn()){
+        onNavigateToMenu()
+    } else {
+        Column(Modifier.fillMaxWidth().fillMaxHeight().padding(innerPadding)) {
 
-        TextField(value = user, onValueChange = {it -> user = it},
-            label = {
-                Text("Correo Electrónico")
-            },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text))
+            TextField(value = user, onValueChange = {it -> user = it},
+                label = {
+                    Text("Correo Electrónico")
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text))
 
 
-        TextField(value = password, onValueChange = {it -> password = it},
-            label = {
-                Text("Contraseña")
-            },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password))
+            TextField(value = password, onValueChange = {it -> password = it},
+                label = {
+                    Text("Contraseña")
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password))
 
-        Button(onClick = {}) {
-            Text("Iniciar Sesión")
+            Button(onClick = {viewModel.login(user, password)
+                if (!viewModel.loginError){
+                    onNavigateToMenu()
+                }
+            })  {
+                Text("Iniciar Sesión")
+            }
+
+            Spacer(Modifier.size(40.dp))
+
+            if(viewModel.loginError){
+                Text(
+                    viewModel.errorDescription, color = Color.Red,
+                    fontStyle = FontStyle.Italic
+                )
+            }
         }
     }
 }

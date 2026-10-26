@@ -12,14 +12,18 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import lopez.ibarra.myapplication.model.data.Users
 import lopez.ibarra.myapplication.model.preferences.ARCHIVO
 import lopez.ibarra.myapplication.navigation.MyApp
 import lopez.ibarra.myapplication.ui.theme.ComposePokedexTheme
 import lopez.ibarra.myapplication.view.screens.LoginScreen
+import lopez.ibarra.myapplication.viewmodel.UserViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val users = Users(this)
+        val userViewModel = UserViewModel(users)
         enableEdgeToEdge()
         setContent {
             ComposePokedexTheme {
@@ -28,12 +32,12 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                        MyApp(innerPadding)
+                        MyApp(innerPadding, userViewModel)
                         //LoginScreen(innerPadding, {})
                     }
                 }
             }
-            val sharedP = getSharedPreferences(ARCHIVO, Context.MODE_PRIVATE)
+            val sharedP = getSharedPreferences(ARCHIVO, MODE_PRIVATE)
         }
     }
 }
@@ -47,7 +51,10 @@ fun MainActivityPreview() {
             color = MaterialTheme.colorScheme.background
         ) {
             Scaffold(Modifier.fillMaxSize()) { innerPadding ->
-                MyApp(innerPadding)
+                MyApp(
+                    innerPadding,
+                    userViewModel = TODO(),
+                )
             }
         }
     }
