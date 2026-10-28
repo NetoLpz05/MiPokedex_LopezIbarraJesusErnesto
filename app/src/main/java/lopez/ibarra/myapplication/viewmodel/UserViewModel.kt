@@ -5,11 +5,18 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.*
 import lopez.ibarra.myapplication.model.data.Users
+import lopez.ibarra.myapplication.model.domain.User
 
 class UserViewModel(users: Users): ViewModel() {
     var loginError by mutableStateOf<Boolean>(false)
     var errorDescription by mutableStateOf<String>("")
     val users = users
+    var currentUser by mutableStateOf<User?>(null)
+
+    init{
+
+        currentUser = users.getCurrentUser()
+    }
 
     fun login(user: String, password: String){
         val user = users.loginService(user, password)

@@ -44,6 +44,14 @@ class Users(context: Context){
         editor.apply()
     }
 
+    fun getCurrentUser(): User?{
+        val user = shared.getString(USER, null)
+        if (user != null){
+            return getUserByMail(user)
+        }
+        return null
+    }
+
     fun isLoggedIn(): Boolean{
         val user = shared.getString(USER, null)
         val username = shared.getString(USERNAME, null)

@@ -52,7 +52,9 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.google.material)
     implementation(libs.kotlinx.serialization.json)
-
+    implementation("androidx.datastore:datastore:1.3.0")
+    implementation("org.jetbrains.kotlinx.kotlin-coroutines-android:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
