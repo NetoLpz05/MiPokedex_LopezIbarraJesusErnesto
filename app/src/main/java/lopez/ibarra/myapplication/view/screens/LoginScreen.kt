@@ -7,8 +7,12 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.BasicSecureTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.foundation.text.input.TextObfuscationMode
 import androidx.compose.material3.Button
+import androidx.compose.material3.SecureTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
@@ -23,7 +27,7 @@ import lopez.ibarra.myapplication.viewmodel.UserViewModel
 @Composable
 fun LoginScreen(innerPadding: PaddingValues, onNavigateToMenu: ()-> Unit, viewModel: UserViewModel = viewModel()) {
     var user by remember { mutableStateOf("") }
-    var password by remember {mutableStateOf("")}
+    var password = remember { TextFieldState("")}
 
     if(viewModel.isLoggedIn()){
         onNavigateToMenu()
@@ -37,13 +41,13 @@ fun LoginScreen(innerPadding: PaddingValues, onNavigateToMenu: ()-> Unit, viewMo
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text))
 
 
-            TextField(value = password, onValueChange = {it -> password = it},
+            SecureTextField(state = password,
                 label = {
                     Text("Contraseña")
-                },
+                }, textObfuscationMode = TextObfuscationMode.RevealLastTyped,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password))
 
-            Button(onClick = {viewModel.login(user, password)
+            Button(onClick = {viewModel.login(user, password.text as String)
                 if (!viewModel.loginError){
                     onNavigateToMenu()
                 }
