@@ -1,34 +1,37 @@
 package lopez.ibarra.myapplication.view.screens
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.painterResource
-import lopez.ibarra.myapplication.model.domain.Pokemon
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.ui.*
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import lopez.ibarra.myapplication.view.components.*
+import lopez.ibarra.myapplication.R
+import lopez.ibarra.myapplication.model.data.getPokemon
+import lopez.ibarra.myapplication.model.data.showAllPokemon
+import lopez.ibarra.myapplication.model.domain.Pokemon
 import lopez.ibarra.myapplication.ui.theme.ComposePokedexTheme
 import lopez.ibarra.myapplication.utilities.getColorByType
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.shape.CircleShape
-import lopez.ibarra.myapplication.R
-import lopez.ibarra.myapplication.model.data.*
+import lopez.ibarra.myapplication.view.components.Ability
+import lopez.ibarra.myapplication.view.components.Chip
+import lopez.ibarra.myapplication.view.components.OtherPkmn
 import lopez.ibarra.myapplication.view.components.PokemonHeader
 
 @Composable
@@ -240,5 +243,19 @@ fun PokemonDetailScreen(
                 }
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PokemonDetailScreenPreview() {
+    ComposePokedexTheme {
+        PokemonDetailScreen(
+            innerPadding = PaddingValues(0.dp),
+            pokemonId = 25,
+            onNavigateDetail = {},
+            onNavigateToMega = {},
+            onToggleFavorite = {}
+        )
     }
 }

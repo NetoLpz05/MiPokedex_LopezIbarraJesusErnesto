@@ -1,13 +1,24 @@
 package lopez.ibarra.myapplication.view.screens
 
-import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
@@ -15,129 +26,161 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import lopez.ibarra.myapplication.R
+import lopez.ibarra.myapplication.model.data.Users
+import lopez.ibarra.myapplication.model.data.pkmnList
+import lopez.ibarra.myapplication.ui.theme.Blue
+import lopez.ibarra.myapplication.ui.theme.ComposePokedexTheme
+import lopez.ibarra.myapplication.ui.theme.Green
+import lopez.ibarra.myapplication.ui.theme.LightBlue
+import lopez.ibarra.myapplication.ui.theme.LightGreen
 import lopez.ibarra.myapplication.view.components.FavoritesRow
 import lopez.ibarra.myapplication.view.components.PokemonCell
 import lopez.ibarra.myapplication.view.components.PokemonRow
-import lopez.ibarra.myapplication.model.data.pkmnList
-import lopez.ibarra.myapplication.ui.theme.*
+import lopez.ibarra.myapplication.viewmodel.UserViewModel
 
-//Agregar boton para ir a la captura jsjs
 @Composable
-fun MenuPokedexScreen(innerPadding: PaddingValues, onNavigateToDetail: (id: Int) -> Unit,
-                      onNavigateToHunt: () -> Unit) {
+fun MenuPokedexScreen(
+    innerPadding: PaddingValues,
+    onNavigateToDetail: (id: Int) -> Unit,
+    onNavigateToHunt: () -> Unit,
+    onLogout: () -> Unit,
+    viewModel: UserViewModel
+) {
     val favorites = pkmnList.filter { it.fav }
-    var grid by remember { mutableStateOf(false) }
+    var grid by remember { mutableStateOf(viewModel.getGridPreference()) }
 
-    Column(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(
-                text = if (grid) "Vista Cuadrícula" else "Vista Lista",
-                style = MaterialTheme.typography.titleMedium
-            )
-            Button(onClick = onNavigateToHunt) {
-                Text("Capturar Pokémon")
-            }
-            Switch(
-                checked = grid,
-                onCheckedChange = { grid = it },
-                colors = SwitchDefaults.colors(
-                    checkedThumbColor = Green,
-                    checkedTrackColor = LightGreen,
-                    uncheckedThumbColor = Blue,
-                    uncheckedTrackColor = LightBlue,
-                    uncheckedBorderColor = Color.Transparent
-                ),
-                thumbContent = if (grid) {
-                    {
-                        Icon(
-                            painter = painterResource(R.drawable.grid),
-                            contentDescription = "grid icon",
-                            modifier = Modifier.size(SwitchDefaults.IconSize)
-                        )
-                    }
-                } else {
-                    {
-                        Icon(
-                            painter = painterResource(R.drawable.list),
-                            contentDescription = "list icon",
-                            modifier = Modifier.size(SwitchDefaults.IconSize)
-                        )
-                    }
-                }
-            )
-        }
-
-        if (grid) {
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(3),
-                modifier = Modifier.fillMaxSize()
+    Scaffold(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(innerPadding),
+        floatingActionButton = {
+            ExtendedFloatingActionButton(
+                onClick = onNavigateToHunt
             ) {
-                if (favorites.isNotEmpty()) {
-                    item(span = { GridItemSpan(maxLineSpan) }) {
-                        Column(Modifier.padding(innerPadding)){
-                            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceBetween){
-                                Text(text = "Mis Favoritos",
+                Text("Catch New")
+            }
+        }
+    ) { contentPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(contentPadding)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = if (grid) "Vista Cuadrícula" else "Vista Lista",
+                    style = MaterialTheme.typography.titleMedium
+                )
+
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    OutlinedButton(
+                        onClick = onLogout,
+                        modifier = Modifier.padding(end = 8.dp)
+                    ) {
+                        Text("Log out")
+                    }
+
+                    Switch(
+                        checked = grid,
+                        onCheckedChange = {
+                            grid = it
+                            viewModel.saveGridPreference(it)
+                        },
+                        colors = SwitchDefaults.colors(
+                            checkedThumbColor = Green,
+                            checkedTrackColor = LightGreen,
+                            uncheckedThumbColor = Blue,
+                            uncheckedTrackColor = LightBlue,
+                            uncheckedBorderColor = Color.Transparent
+                        ),
+                        thumbContent = if (grid) {
+                            {
+                                Icon(
+                                    painter = painterResource(R.drawable.grid),
+                                    contentDescription = "grid icon",
+                                    modifier = Modifier.size(SwitchDefaults.IconSize)
+                                )
+                            }
+                        } else {
+                            {
+                                Icon(
+                                    painter = painterResource(R.drawable.list),
+                                    contentDescription = "list icon",
+                                    modifier = Modifier.size(SwitchDefaults.IconSize)
+                                )
+                            }
+                        }
+                    )
+                }
+            }
+
+            if (grid) {
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(3),
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    if (favorites.isNotEmpty()) {
+                        item(span = { GridItemSpan(maxLineSpan) }) {
+                            Column {
+                                Text(
+                                    text = "Favorite Pokemons",
                                     style = MaterialTheme.typography.headlineSmall,
                                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                                 )
-                                Button(onClick = {onNavigateToHunt()}){
-                                    Text("Capturar nuevo pokémon")
-                                }
+                                FavoritesRow(favoriteList = favorites, onNavigateToDetail = onNavigateToDetail)
                             }
-
-                            FavoritesRow(favoriteList = favorites, onNavigateToDetail)
                         }
                     }
-                }
 
-                item(span = { GridItemSpan(maxLineSpan) }) {
-                    Text(
-                        text = "Mis pokemones",
-                        style = MaterialTheme.typography.headlineSmall,
-                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-                    )
-                }
+                    item(span = { GridItemSpan(maxLineSpan) }) {
+                        Text(
+                            text = "All pokemons",
+                            style = MaterialTheme.typography.headlineSmall,
+                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                        )
+                    }
 
-                items(pkmnList) { pokemon ->
-                    PokemonCell(pokemon = pokemon, onNavigateToDetail = onNavigateToDetail)
+                    items(pkmnList) { pokemon ->
+                        PokemonCell(pokemon = pokemon, onNavigateToDetail = onNavigateToDetail)
+                    }
                 }
-            }
-        } else {
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
-                if (favorites.isNotEmpty()) {
+            } else {
+                LazyColumn(modifier = Modifier.fillMaxSize()) {
+                    if (favorites.isNotEmpty()) {
+                        item {
+                            Column {
+                                Text(
+                                    text = "Favorite Pokemons",
+                                    style = MaterialTheme.typography.headlineSmall,
+                                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                                )
+                                FavoritesRow(favoriteList = favorites, onNavigateToDetail = onNavigateToDetail)
+                            }
+                        }
+                    }
+
                     item {
-                        Column {
-                            Text(
-                                text = "Mis Favoritos",
-                                style = MaterialTheme.typography.headlineSmall,
-                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-                            )
-                            FavoritesRow(favoriteList = favorites, onNavigateToDetail)
-                        }
+                        Text(
+                            text = "All pokemons",
+                            style = MaterialTheme.typography.headlineSmall,
+                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                        )
                     }
-                }
 
-                item {
-                    Text(
-                        text = "Mis pokemones",
-                        style = MaterialTheme.typography.headlineSmall,
-                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-                    )
-                }
-
-                items(pkmnList) { pokemon ->
-                    PokemonRow(pokemon = pokemon, onNavigateToDetail = onNavigateToDetail)
+                    items(pkmnList) { pokemon ->
+                        PokemonRow(pokemon = pokemon, onNavigateToDetail = onNavigateToDetail)
+                    }
                 }
             }
         }
@@ -148,10 +191,14 @@ fun MenuPokedexScreen(innerPadding: PaddingValues, onNavigateToDetail: (id: Int)
 @Composable
 fun MenuPokedexScreenPreview() {
     ComposePokedexTheme {
+        val context = LocalContext.current
+        val userViewModel = remember { UserViewModel(Users(context)) }
         MenuPokedexScreen(
             innerPadding = PaddingValues(0.dp),
             onNavigateToDetail = {},
-            onNavigateToHunt = {}
+            onNavigateToHunt = {},
+            onLogout = {},
+            viewModel = userViewModel
         )
     }
 }
