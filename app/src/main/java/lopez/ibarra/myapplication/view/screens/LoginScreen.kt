@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import lopez.ibarra.myapplication.model.data.Users
 import lopez.ibarra.myapplication.ui.theme.ComposePokedexTheme
 import lopez.ibarra.myapplication.viewmodel.UserViewModel
+import lopez.ibarra.myapplication.model.data.CompanionPreferences
 
 @Composable
 fun LoginScreen(
@@ -106,7 +107,9 @@ fun LoginScreenPreview() {
     ComposePokedexTheme {
         val context = LocalContext.current
         val userViewModel = remember {
-            UserViewModel(Users(context)).apply {
+            UserViewModel(
+                users = Users(context),
+                companionDS = CompanionPreferences(context)).apply {
                 logout()
             }
         }

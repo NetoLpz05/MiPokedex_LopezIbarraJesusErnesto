@@ -4,6 +4,7 @@ import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
+import lopez.ibarra.myapplication.R
 import lopez.ibarra.myapplication.model.domain.Pokemon
 import java.io.InputStream
 import java.io.OutputStream
@@ -18,7 +19,7 @@ object PokemonSerializer : Serializer<Pokemon> {
         weight = 0f,
         fav = false,
         ability = "",
-        image = -1,
+        image = R.drawable.wtp,
         evolutions = emptyList(),
         megaEvoIds = emptyList()
     )

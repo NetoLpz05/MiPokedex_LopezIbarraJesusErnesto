@@ -16,3 +16,6 @@ object PokemonHunt
 
 @Serializable
 object Login
+
+@Serializable
+object Profile

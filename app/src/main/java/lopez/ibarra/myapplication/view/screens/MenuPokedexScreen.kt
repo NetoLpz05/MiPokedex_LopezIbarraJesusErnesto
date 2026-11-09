@@ -14,8 +14,11 @@ import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
@@ -42,12 +45,14 @@ import lopez.ibarra.myapplication.view.components.FavoritesRow
 import lopez.ibarra.myapplication.view.components.PokemonCell
 import lopez.ibarra.myapplication.view.components.PokemonRow
 import lopez.ibarra.myapplication.viewmodel.UserViewModel
+import lopez.ibarra.myapplication.model.data.CompanionPreferences
 
 @Composable
 fun MenuPokedexScreen(
     innerPadding: PaddingValues,
     onNavigateToDetail: (id: Int) -> Unit,
     onNavigateToHunt: () -> Unit,
+    onNavigateToProfile: () -> Unit, // Callback para navegar a perfil
     onLogout: () -> Unit,
     viewModel: UserViewModel
 ) {
@@ -84,6 +89,13 @@ fun MenuPokedexScreen(
                 )
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
+                    IconButton(onClick = onNavigateToProfile) {
+                        Icon(
+                            imageVector = Icons.Default.Person,
+                            contentDescription = "Perfil"
+                        )
+                    }
+
                     OutlinedButton(
                         onClick = onLogout,
                         modifier = Modifier.padding(end = 8.dp)
@@ -192,11 +204,17 @@ fun MenuPokedexScreen(
 fun MenuPokedexScreenPreview() {
     ComposePokedexTheme {
         val context = LocalContext.current
-        val userViewModel = remember { UserViewModel(Users(context)) }
+        val userViewModel = remember {
+            UserViewModel(
+                users = Users(context),
+                companionDS = CompanionPreferences(context)
+            )
+        }
         MenuPokedexScreen(
             innerPadding = PaddingValues(0.dp),
             onNavigateToDetail = {},
             onNavigateToHunt = {},
+            onNavigateToProfile = {},
             onLogout = {},
             viewModel = userViewModel
         )
