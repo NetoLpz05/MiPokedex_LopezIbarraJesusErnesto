@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,6 +21,9 @@ import lopez.ibarra.myapplication.ui.theme.leaf_green
 
 @Composable
 fun Chip(text: String, color: Color, modifier: Modifier = Modifier) {
+    val isDark = color.luminance() < 0.5f
+    val textColor = if (isDark) Color.White else Color.Black
+
     Box(
         modifier
             .padding(horizontal = 5.dp, vertical = 2.dp)
@@ -27,7 +31,10 @@ fun Chip(text: String, color: Color, modifier: Modifier = Modifier) {
             .background(color)
             .padding(horizontal = 14.dp, vertical = 4.dp)
     ) {
-        Text(text)
+        Text(
+            text = text,
+            color = textColor
+        )
     }
 }
 
@@ -55,6 +62,12 @@ fun NumberChip(text: String, modifier: Modifier = Modifier, colors: Pair<Color, 
 @Composable
 fun ChipPreview(){
     Chip("Planta", leaf_green)
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DarkChipPreview(){
+    Chip("Siniestro", Color.Black)
 }
 
 @Preview(showBackground = true)

@@ -16,10 +16,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -29,7 +31,6 @@ import androidx.compose.ui.zIndex
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import lopez.ibarra.myapplication.R
 import lopez.ibarra.myapplication.model.data.getPokemon
-import lopez.ibarra.myapplication.model.data.showAllPokemon
 import lopez.ibarra.myapplication.model.domain.Pokemon
 import lopez.ibarra.myapplication.ui.theme.ComposePokedexTheme
 import lopez.ibarra.myapplication.utilities.getColorByType
@@ -38,7 +39,6 @@ import lopez.ibarra.myapplication.view.components.Chip
 import lopez.ibarra.myapplication.view.components.OtherPkmn
 import lopez.ibarra.myapplication.view.components.PokemonHeader
 import lopez.ibarra.myapplication.viewmodel.PokemonDetailViewModel
-import androidx.compose.runtime.getValue
 
 @Composable
 fun PokemonCard(
@@ -49,6 +49,8 @@ fun PokemonCard(
     onNavigateToMega: (Int) -> Unit,
     onSelectCompanion: () -> Unit
 ) {
+    val isDark = typeColor.luminance() < 0.5f
+
     Box(contentAlignment = Alignment.TopCenter) {
         Image(
             painter = painterResource(pokemon.image),
@@ -130,21 +132,28 @@ fun PokemonCard(
                         ) {
                             Text(
                                 text = "★ Es tu compañero",
-                                color = typeColor,
+                                color = if (isDark) MaterialTheme.colorScheme.onSurface else typeColor,
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold,
                                 modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp)
                             )
                         }
                     } else {
+                        val textColor = if (isDark) Color.White else Color.Unspecified
                         Button(
                             onClick = onSelectCompanion,
-                            colors = ButtonDefaults.buttonColors(containerColor = typeColor),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = typeColor,
+                                contentColor = if (isDark) Color.White else MaterialTheme.colorScheme.onPrimary
+                            ),
                             modifier = Modifier
                                 .align(Alignment.CenterHorizontally)
                                 .padding(bottom = 12.dp)
                         ) {
-                            Text(text = "Elegir como compañero")
+                            Text(
+                                text = "Elegir como compañero",
+                                color = textColor
+                            )
                         }
                     }
 
@@ -312,7 +321,7 @@ fun PokemonDetailScreen(
 @Preview(showBackground = true)
 @Composable
 fun PokemonDetailScreenPreview() {
-    val samplePokemon = getPokemon(25)
+    val samplePokemon = getPokemon(359)
 
     ComposePokedexTheme {
         PokemonDetailScreen(
@@ -321,7 +330,7 @@ fun PokemonDetailScreenPreview() {
             evolutions = emptyList(),
             prevPokemon = null,
             nextPokemon = null,
-            isCompanion = true,
+            isCompanion = false,
             onNavigateDetail = {},
             onNavigateToMega = {},
             onSelectCompanion = {},

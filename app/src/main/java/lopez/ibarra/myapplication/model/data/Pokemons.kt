@@ -214,6 +214,49 @@ val pkmnList = mutableStateListOf(
         evolutions = listOf(447,448)
     ),
 
+    //Absol
+    Pokemon(
+        "Absol",
+        359,
+        "Siniestro",
+        "Cada vez que Absol aparece ante la gente, le sigue una catástrofe como un terremoto o un maremoto. Por ello se le conoce como el Pokémon Catástrofe.",
+        1.2f,
+        47.0f,
+        false,
+        "Presión",
+        R.drawable.absol,
+        evolutions = listOf(359),
+        megaEvoIds = listOf(3590, 3591)
+    ),
+
+    // Mega Absol
+    Pokemon(
+        "Mega Absol",
+        3590,
+        "Siniestro",
+        "Al megaevolucionar, la energía de la megaevolución se manifiesta en su cuerpo en forma de alas blancas compuestas por pelaje erecto.",
+        1.2f,
+        49.0f,
+        false,
+        "Espejo Mágico",
+        R.drawable.megaabsol,
+        evolutions = listOf(359)
+    ),
+
+    // MEGA ABSOL Z
+    Pokemon(
+        "Mega Absol Z",
+        3591,
+        "Siniestro",
+        "La energía Z combinada con la Megaevolución desata un aura oscura imponente que presagia grandes cambios y desastres sobre sus adversarios.",
+        1.3f,
+        48.5f,
+        false,
+        "Cortante",
+        R.drawable.megaabsolz,
+        evolutions = listOf(359)
+    ),
+
     //Froakie
     Pokemon(
         "Froakie",
