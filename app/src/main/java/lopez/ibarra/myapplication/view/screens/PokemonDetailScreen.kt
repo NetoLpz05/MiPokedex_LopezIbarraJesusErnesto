@@ -1,5 +1,6 @@
 package lopez.ibarra.myapplication.view.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,6 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,6 +25,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -131,7 +134,7 @@ fun PokemonCard(
                                 .padding(bottom = 12.dp)
                         ) {
                             Text(
-                                text = "★ Es tu compañero",
+                                text = "⭐ Es tu compañero",
                                 color = if (isDark) MaterialTheme.colorScheme.onSurface else typeColor,
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold,
@@ -217,6 +220,7 @@ fun PokemonDetailRoute(
     onNavigateToMega: (Int) -> Unit,
     onToggleFavorite: (Int) -> Unit
 ) {
+    val context = LocalContext.current
     val pokemon = pokemonDVM.getPokemonById(pokemonId)
     val evolutions = pokemonDVM.getEvolutions(pokemon)
     val prev = pokemonDVM.getPreviousPokemon(pokemon)
@@ -224,6 +228,12 @@ fun PokemonDetailRoute(
 
     val currentCompanion by pokemonDVM.companion.collectAsStateWithLifecycle(initialValue = null)
     val isCompanion = currentCompanion != null && currentCompanion?.name == pokemon.name
+
+    LaunchedEffect(pokemonDVM) {
+        pokemonDVM.toastEvent.collect { message ->
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        }
+    }
 
     PokemonDetailScreen(
         innerPadding = innerPadding,

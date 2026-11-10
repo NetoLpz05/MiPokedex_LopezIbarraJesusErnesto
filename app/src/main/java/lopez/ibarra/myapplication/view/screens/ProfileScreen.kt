@@ -14,13 +14,18 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import androidx.lifecycle.viewmodel.compose.viewModel
 import lopez.ibarra.myapplication.R
+import lopez.ibarra.myapplication.model.data.CompanionPreferences
+import lopez.ibarra.myapplication.model.data.Users
+import lopez.ibarra.myapplication.ui.theme.ComposePokedexTheme
 import lopez.ibarra.myapplication.viewmodel.UserViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.getValue
@@ -153,6 +158,14 @@ fun ProfileScreen(innerPadding: PaddingValues, userVM: UserViewModel = viewModel
                         modifier = Modifier.padding(horizontal = 20.dp, vertical = 6.dp)
                     )
                 }
+
+                val days = userVM.getCompanionDays()
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = "Tiene $days ${if (days == 1) "día" else "días"} de ser tu compañero",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
             }
         }
     }
@@ -161,5 +174,14 @@ fun ProfileScreen(innerPadding: PaddingValues, userVM: UserViewModel = viewModel
 @Preview(showBackground = true)
 @Composable
 fun ProfileScreenPreview() {
-    ProfileScreen(PaddingValues(20.dp))
+    ComposePokedexTheme {
+        val context = LocalContext.current
+        val userViewModel = remember {
+            UserViewModel(Users(context), CompanionPreferences(context))
+        }
+        ProfileScreen(
+            innerPadding = PaddingValues(20.dp),
+            userVM = userViewModel
+        )
+    }
 }

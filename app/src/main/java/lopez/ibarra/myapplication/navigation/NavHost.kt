@@ -7,7 +7,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.*
 import androidx.navigation.toRoute
 import lopez.ibarra.myapplication.model.data.CompanionPreferences
-import lopez.ibarra.myapplication.model.data.toggleFavorite
 import lopez.ibarra.myapplication.view.screens.LoginScreen
 import lopez.ibarra.myapplication.view.screens.MenuPokedexScreen
 import lopez.ibarra.myapplication.view.screens.PokemonDetailRoute
@@ -46,7 +45,7 @@ fun MyApp(innerPadding: PaddingValues, userViewModel: UserViewModel) {
                 innerPadding = innerPadding,
                 onNavigateToDetail = { id -> navController.navigate(route = PokemonDetail(id)) },
                 onNavigateToHunt = { navController.navigate(route = PokemonHunt) },
-                onNavigateToProfile = { navController.navigate(route = Profile) }, // <- Pasar la navegación al perfil
+                onNavigateToProfile = { navController.navigate(route = Profile) },
                 onLogout = {
                     userViewModel.logout()
                     navController.navigate(Login) {
@@ -71,7 +70,7 @@ fun MyApp(innerPadding: PaddingValues, userViewModel: UserViewModel) {
                 onNavigateToMega = { id ->
                     navController.navigate(route = PokemonMegaDetail(id))
                 },
-                onToggleFavorite = { id -> toggleFavorite(id) }
+                onToggleFavorite = { id -> pokemonDVM.toggleFavorite(id) }
             )
         }
 
@@ -87,7 +86,7 @@ fun MyApp(innerPadding: PaddingValues, userViewModel: UserViewModel) {
                     }
                 },
                 onNavigateToMega = {},
-                onToggleFavorite = { id -> toggleFavorite(id) }
+                onToggleFavorite = { id -> pokemonDVM.toggleFavorite(id) }
             )
         }
 

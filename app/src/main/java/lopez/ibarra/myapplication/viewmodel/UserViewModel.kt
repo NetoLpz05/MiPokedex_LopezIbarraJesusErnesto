@@ -61,4 +61,8 @@ class UserViewModel(val users: Users,
     fun getGridPreference(): Boolean {
         return users.getGridPreference()
     }
+
+    fun getCompanionDays(): Int {
+        return companionDS.getCompanionDays()
+    }
 }
