@@ -17,18 +17,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import androidx.lifecycle.viewmodel.compose.viewModel
 import lopez.ibarra.myapplication.R
-import lopez.ibarra.myapplication.ui.theme.Pink40
-import lopez.ibarra.myapplication.ui.theme.Typography
 import lopez.ibarra.myapplication.viewmodel.UserViewModel
-import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.font.FontWeight
 
 @Composable
@@ -53,7 +48,6 @@ fun ProfileScreen(innerPadding: PaddingValues, userVM: UserViewModel = viewModel
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
-        // 1. Tarjeta con la información del Usuario
         Card(
             modifier = Modifier.fillMaxWidth(),
             elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
@@ -65,7 +59,6 @@ fun ProfileScreen(innerPadding: PaddingValues, userVM: UserViewModel = viewModel
                     .padding(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // Avatar circular con icono de usuario
                 Surface(
                     modifier = Modifier.size(80.dp),
                     shape = CircleShape,
@@ -132,7 +125,6 @@ fun ProfileScreen(innerPadding: PaddingValues, userVM: UserViewModel = viewModel
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Marco circular donde destaca la imagen del Pokémon
                 Surface(
                     modifier = Modifier.size(130.dp),
                     shape = CircleShape,
@@ -149,7 +141,6 @@ fun ProfileScreen(innerPadding: PaddingValues, userVM: UserViewModel = viewModel
 
                 Spacer(modifier = Modifier.height(12.dp))
 
-                // Badge / Chip estilizado con el nombre del compañero
                 Surface(
                     color = MaterialTheme.colorScheme.primaryContainer,
                     shape = RoundedCornerShape(16.dp)

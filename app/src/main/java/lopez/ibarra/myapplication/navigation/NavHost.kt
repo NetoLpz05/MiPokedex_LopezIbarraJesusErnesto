@@ -11,7 +11,6 @@ import lopez.ibarra.myapplication.model.data.toggleFavorite
 import lopez.ibarra.myapplication.view.screens.LoginScreen
 import lopez.ibarra.myapplication.view.screens.MenuPokedexScreen
 import lopez.ibarra.myapplication.view.screens.PokemonDetailRoute
-import lopez.ibarra.myapplication.view.screens.PokemonDetailScreen
 import lopez.ibarra.myapplication.view.screens.PokemonHuntScreen
 import lopez.ibarra.myapplication.view.screens.ProfileScreen
 import lopez.ibarra.myapplication.viewmodel.PokemonDetailViewModel
