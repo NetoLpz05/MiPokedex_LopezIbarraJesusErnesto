@@ -220,7 +220,6 @@ fun PokemonDetailRoute(
     onNavigateToMega: (Int) -> Unit,
     onToggleFavorite: (Int) -> Unit
 ) {
-    val context = LocalContext.current
     val pokemon = pokemonDVM.getPokemonById(pokemonId)
     val evolutions = pokemonDVM.getEvolutions(pokemon)
     val prev = pokemonDVM.getPreviousPokemon(pokemon)
@@ -228,12 +227,6 @@ fun PokemonDetailRoute(
 
     val currentCompanion by pokemonDVM.companion.collectAsStateWithLifecycle(initialValue = null)
     val isCompanion = currentCompanion != null && currentCompanion?.name == pokemon.name
-
-    LaunchedEffect(pokemonDVM) {
-        pokemonDVM.toastEvent.collect { message ->
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-        }
-    }
 
     PokemonDetailScreen(
         innerPadding = innerPadding,
