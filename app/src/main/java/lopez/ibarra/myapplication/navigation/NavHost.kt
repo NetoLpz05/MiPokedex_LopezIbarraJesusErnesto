@@ -7,11 +7,16 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.*
 import androidx.navigation.toRoute
 import lopez.ibarra.myapplication.model.data.CompanionPreferences
+import lopez.ibarra.myapplication.sqllite.DatabaseHelper
+import lopez.ibarra.myapplication.sqllite.PokemonDAO
+import lopez.ibarra.myapplication.sqllite.PokemonSQLRepository
+import lopez.ibarra.myapplication.view.screens.AddPokemonScreen
 import lopez.ibarra.myapplication.view.screens.LoginScreen
 import lopez.ibarra.myapplication.view.screens.MenuPokedexScreen
 import lopez.ibarra.myapplication.view.screens.PokemonDetailRoute
 import lopez.ibarra.myapplication.view.screens.PokemonHuntScreen
 import lopez.ibarra.myapplication.view.screens.ProfileScreen
+import lopez.ibarra.myapplication.viewmodel.AddPokemonViewModel
 import lopez.ibarra.myapplication.viewmodel.PokemonDetailViewModel
 import lopez.ibarra.myapplication.viewmodel.UserViewModel
 
@@ -22,6 +27,13 @@ fun MyApp(innerPadding: PaddingValues, userViewModel: UserViewModel) {
 
     val pokemonDVM = viewModel<PokemonDetailViewModel> {
         PokemonDetailViewModel(CompanionPreferences(context))
+    }
+
+    val addPokemonVM = viewModel<AddPokemonViewModel> {
+        val helper = DatabaseHelper(context)
+        val dao = PokemonDAO(helper)
+        val repo = PokemonSQLRepository(dao)
+        AddPokemonViewModel(repo)
     }
 
     val navigateToDetail = { id: Int -> navController.navigate(route = PokemonDetail(id)) }
@@ -46,6 +58,7 @@ fun MyApp(innerPadding: PaddingValues, userViewModel: UserViewModel) {
                 onNavigateToDetail = { id -> navController.navigate(route = PokemonDetail(id)) },
                 onNavigateToHunt = { navController.navigate(route = PokemonHunt) },
                 onNavigateToProfile = { navController.navigate(route = Profile) },
+                onNavigateToAddPokemon = { navController.navigate(route = AddPokemon) },
                 onLogout = {
                     userViewModel.logout()
                     navController.navigate(Login) {
@@ -96,6 +109,10 @@ fun MyApp(innerPadding: PaddingValues, userViewModel: UserViewModel) {
 
         composable<Profile> {
             ProfileScreen(innerPadding, userViewModel)
+        }
+
+        composable<AddPokemon> {
+            AddPokemonScreen(innerPadding, addPokemonVM)
         }
     }
 }

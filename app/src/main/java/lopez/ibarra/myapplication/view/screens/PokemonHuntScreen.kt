@@ -47,6 +47,8 @@ fun PokemonHuntScreen(
                 modifier = Modifier.size(120.dp)
             )
 
+            Spacer(modifier = Modifier.height(8.dp))
+
             Text(
                 text = "¡Apareció un ${pokemon.name} salvaje!",
                 style = Typography.labelLarge,
@@ -59,25 +61,25 @@ fun PokemonHuntScreen(
             Button(onClick = { viewModel.capturePokemon() }) {
                 Text("Capturar a ${pokemon.name}")
             }
+        }
 
-            Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
-            // Mensajes de estado
-            if (viewModel.gonePkmn) {
-                Text(
-                    text = "El Pokémon se ha escapado :(",
-                    style = Typography.labelLarge,
-                    color = Color.Magenta
-                )
-            }
+        // Mensajes de estado (fuera del bloque wildPkmn?.let)
+        if (viewModel.gonePkmn) {
+            Text(
+                text = "El Pokémon se ha escapado :(",
+                style = Typography.labelLarge,
+                color = Color.Magenta
+            )
+        }
 
-            if (viewModel.isPokemonCaptured) {
-                Text(
-                    text = "¡Has capturado al Pokémon! :)",
-                    style = Typography.labelLarge,
-                    color = Green
-                )
-            }
+        if (viewModel.isPokemonCaptured) {
+            Text(
+                text = "¡Has capturado al Pokémon! :)",
+                style = Typography.labelLarge,
+                color = Green
+            )
         }
 
         Spacer(modifier = Modifier.height(20.dp))

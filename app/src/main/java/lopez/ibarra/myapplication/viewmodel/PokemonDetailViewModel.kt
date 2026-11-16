@@ -3,9 +3,13 @@ package lopez.ibarra.myapplication.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import lopez.ibarra.myapplication.model.data.CompanionPreferences
 import lopez.ibarra.myapplication.model.data.getPokemon
+import lopez.ibarra.myapplication.model.data.markAsFavorite
 import lopez.ibarra.myapplication.model.data.showAllPokemon
 import lopez.ibarra.myapplication.model.domain.Pokemon
 
@@ -34,7 +38,9 @@ class PokemonDetailViewModel(private val companionDS: CompanionPreferences) : Vi
 
     fun saveCompanion(pokemon: Pokemon) {
         viewModelScope.launch {
-            companionDS.saveCompanion(pokemon)
+            markAsFavorite(pokemon.number)
+            val updatedPokemon = pokemon.copy(fav = true)
+            companionDS.saveCompanion(updatedPokemon)
         }
     }
 

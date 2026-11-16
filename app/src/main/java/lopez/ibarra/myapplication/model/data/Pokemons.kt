@@ -499,3 +499,13 @@ fun toggleFavorite(id: Int) {
         pkmnList[index] = pkmn.copy(fav = !pkmn.fav)
     }
 }
+
+fun markAsFavorite(id: Int) {
+    val index = pkmnList.indexOfFirst { it.number == id }
+    if (index != -1) {
+        val pkmn = pkmnList[index]
+        if (!pkmn.fav) {
+            pkmnList[index] = pkmn.copy(fav = true)
+        }
+    }
+}

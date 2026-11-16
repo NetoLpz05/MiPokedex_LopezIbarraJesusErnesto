@@ -1,12 +1,13 @@
 package lopez.ibarra.myapplication.viewmodel
 
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import lopez.ibarra.myapplication.model.domain.Pokemon
-import androidx.compose.runtime.*
 import lopez.ibarra.myapplication.model.data.pkmnList
+import lopez.ibarra.myapplication.model.domain.Pokemon
 
-class PokemonViewModel : ViewModel(){
+class PokemonViewModel : ViewModel() {
     var wildPkmn by mutableStateOf<Pokemon?>(null)
         private set
 
@@ -17,14 +18,16 @@ class PokemonViewModel : ViewModel(){
 
     var isPokemonCaptured by mutableStateOf(false)
 
-    fun searchPkmn(){
+    fun searchPkmn() {
         wildPkmn = pkmnList.random()
+        gonePkmn = false
+        isPokemonCaptured = false
     }
 
-    fun capturePokemon(){
+    fun capturePokemon() {
         wildPkmn?.let {
-            var isCaptured = (1..2).random()
-            if (isCaptured == 1){
+            val isCaptured = (1..2).random()
+            if (isCaptured == 1) {
                 capturedPkmn = capturedPkmn + it
                 gonePkmn = false
                 wildPkmn = null
