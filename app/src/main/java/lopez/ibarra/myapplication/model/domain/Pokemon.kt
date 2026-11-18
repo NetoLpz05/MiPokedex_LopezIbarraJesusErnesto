@@ -13,6 +13,7 @@ data class Pokemon(
     var fav: Boolean,
     val ability: String,
     val image: Int,
+    val sqlImage: ByteArray? = null,
     val evolutions: List<Int>,
     val megaEvoIds: List<Int> = emptyList()
 )

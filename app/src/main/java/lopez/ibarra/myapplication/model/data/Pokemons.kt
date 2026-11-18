@@ -9,12 +9,14 @@ val pkmnList = mutableStateListOf(
     Pokemon(
         "Ogerpon", 1017, "Planta",
         "Es bromista y extremadamente curioso. A la hora de combatir, se sirve del tipo de energía que contenga la máscara que lleve puesta.",
-        1.2f, 39.8f, true, "Competitivo", R.drawable.ogerpon, listOf(1017)
+        1.2f, 39.8f, true, "Competitivo", R.drawable.ogerpon,
+        evolutions = listOf(1017)
     ),
     Pokemon(
         "Litten", 725, "Fuego",
         "Un Pokémon gato muy orgulloso. Ataca con bolas de pelo ardiente que produce en su estómago.",
-        0.4f, 4.3f, false, "Mar llamas", R.drawable.litten, listOf(725, 726, 727)
+        0.4f, 4.3f, false, "Mar llamas", R.drawable.litten,
+        evolutions = listOf(725, 726, 727)
     ),
     Pokemon(
         "Torracat", 726, "Fuego",

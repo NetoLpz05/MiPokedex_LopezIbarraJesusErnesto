@@ -13,6 +13,7 @@ import androidx.compose.material3.ExposedDropdownMenuAnchorType
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -47,6 +48,7 @@ fun AddPokemonScreen(
     val type2 = remember { TextFieldState() }
     val height = remember { TextFieldState() }
     val weight = remember { TextFieldState() }
+    var favorite by remember { mutableStateOf(false) }
     val ability = remember { TextFieldState() }
     val description = remember { TextFieldState() }
     var openType1 by remember { mutableStateOf(false) }
@@ -163,6 +165,14 @@ fun AddPokemonScreen(
             label = { Text("Descripción del Pokémon") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
         )
+
+        Row{
+            Text("¿Marcar como favorito?")
+            Switch(
+                checked = favorite,
+                onCheckedChange = { favorite = it }
+            )
+        }
 
         Button(
             onClick = {

@@ -21,8 +21,28 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         oldVersion: Int,
         newVersion: Int
     ) {
-        val dropTablePokemons = "DROP TABLE IF EXISTS ${Contract.Pokemones.TABLE_NAME}"
-        db?.execSQL(dropTablePokemons)
+        //val dropTablePokemons = "DROP TABLE IF EXISTS ${Contract.Pokemones.TABLE_NAME}"
+        //db?.execSQL(dropTablePokemons)
+        if(oldVersion<2){
+            val addColumnAbility = "ALTER TABLE ${Contract.Pokemones.TABLE_NAME} +" +
+                    "ADD COLUMN ${Contract.Pokemones.COLUMN_NAME_ABILITY} TEXT"
+            val addColumnFavorite = "ALTER TABLE ${Contract.Pokemones.TABLE_NAME} +" +
+                    "ADD COLUMN ${Contract.Pokemones.COLUMN_NAME_FAVORITE} BOOLEAN"
+            val addColumnHeight = "ALTER TABLE ${Contract.Pokemones.TABLE_NAME} +" +
+                    "ADD COLUMN ${Contract.Pokemones.COLUMN_NAME_HEIGHT} REAL"
+            val addColumnWeight = "ALTER TABLE ${Contract.Pokemones.TABLE_NAME} +" +
+                    "ADD COLUMN ${Contract.Pokemones.COLUMN_NAME_WEIGHT} REAL"
+            val addColumnImage = "ALTER TABLE ${Contract.Pokemones.TABLE_NAME} +" +
+                    "ADD COLUMN ${Contract.Pokemones.COLUMN_NAME_IMAGE} BLOB"
+            db?.beginTransaction()
+            db?.execSQL(addColumnAbility)
+            db?.execSQL(addColumnFavorite)
+            db?.execSQL(addColumnHeight)
+            db?.execSQL(addColumnWeight)
+            db?.execSQL(addColumnImage)
+            db?.setTransactionSuccessful()
+            db?.endTransaction()
+        }
         onCreate(db)
     }
 
